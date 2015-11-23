@@ -1,0 +1,36 @@
+﻿@using IDC.LeadCapture.Models.Assessment
+@model Assessment
+
+@{
+    foreach (var question in Model.Questions.Where(x => !string.IsNullOrEmpty(x.ValidationText)))
+    {        
+        switch (question.Type)
+        {
+            case AnswerType.Text:
+            foreach(var answer in question.Answers)
+            {
+            @:$("#@answer.Name").rules("add", { required: true, messages: { required: "@question.ValidationText" }});
+            }
+            break;
+            case AnswerType.Radio:
+            @:$("#@question.Name").rules("add", { required: true, messages: { required: "@question.ValidationText" }});
+            break;
+            case AnswerType.DropDown:
+            @:$("#@question.Name").rules("add", { required: true, messages: { required: "@question.ValidationText" }});
+            if(question.AltAnswer != null)
+            {
+            @:$("#@question.AltAnswer.Name").rules("add", { required: function(element) { return $("#@question.Name").val() == $("#@question.AltAnswer.Name").attr('choiceId') }, messages: { required: "@question.ValidationText" }});
+            }
+            break;
+            case AnswerType.Checkbox:
+
+            break;
+            case AnswerType.Integer:
+            foreach (var answer in question.Answers)
+            {
+            @:$("#@answer.Name").rules("add", { required: true, min: 1, digits: true, messages: { required: "@question.ValidationText" }});
+            }
+            break;
+        }
+    }
+}

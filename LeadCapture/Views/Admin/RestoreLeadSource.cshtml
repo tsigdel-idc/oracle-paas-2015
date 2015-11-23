@@ -1,0 +1,60 @@
+﻿@using IDC.LeadCapture.BLL
+@using IDC.LeadCapture.Models.Admin
+@model IDC.LeadCapture.Models.Admin.Campaign
+@{
+    ViewBag.Title = ResourceCache.Localize("DX LG | Restore Lead Source");
+    Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
+}
+
+<section class="slice bg-white">
+    <div class="wp-section">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="section-title-wr style-3">
+                        <h3 class="section-title left"><span>@ResourceCache.Localize("UI_Restore_Lead_Source_title")</span></h3>
+                    </div>
+                    <p>@ResourceCache.Localize("UI_Restore_Lead_Source_text")</p>
+                    <hr>
+                </div>
+            </div>
+            @using (Html.BeginForm(null, null, FormMethod.Post, new { @class = "sky-form" }))
+            {
+            @Html.AntiForgeryToken()
+            @Html.HiddenFor(m => m.Id)
+            @Html.ValidationSummary(false)
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="icon-block icon-block-2">
+                        <div class="icon-block-item base">
+                            <i class="fa fa-history"></i>
+                        </div>
+                        <div class="icon-block-body">
+                            <ul class="list-check">
+                                <li><i class="fa fa-caret-right"></i> <strong>@ResourceCache.Localize("Source ID:")</strong> @Model.Id</li>
+                                <li><i class="fa fa-caret-right"></i> <strong>@ResourceCache.Localize("Source Description:")</strong> @Model.Description</li>
+                                <li><i class="fa fa-caret-right"></i> <strong>@ResourceCache.Localize("Status:")</strong> @ResourceCache.Localize(Model.Status.ToString()) <i class="fa fa-arrow-right"></i>  @ResourceCache.Localize(CampaignStatus.Active.ToString())</li>
+                                <li><i class="fa fa-caret-right"></i> <strong>@ResourceCache.Localize("Source Link:")</strong> @Model.Link</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <hr>
+                <div class="col-md-12">
+                    <button type="button" class="btn btn-icon btn-base fa-close"
+                            onclick="location.href='@Url.Action("ManageLeadSources", "Admin")'">
+                        <span>@ResourceCache.Localize("Cancel_en")&nbsp;&nbsp;</span>
+                    </button>
+                    &nbsp;&nbsp;
+                    <button type="submit" class="btn btn-icon btn-base btn-icon-right btn-check">
+                        <span>@ResourceCache.Localize("Yes_en")</span>
+                    </button>
+                </div>
+            </div>
+            }
+        </div>
+    </div>
+</section>
+

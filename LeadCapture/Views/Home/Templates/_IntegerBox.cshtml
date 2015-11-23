@@ -1,0 +1,14 @@
+﻿@using IDC.LeadCapture.Models.Assessment
+@model Question
+
+            @foreach (var item in Model.Answers)
+            {
+                if (item.Type != AnswerType.Integer) { continue; }
+
+                <div class="col-md-5">
+                    <span class="input-group-addon">#</span>@(Html.TextBox(Model.Name, item.Value, new { @style = "text-align:right", @class = "form-control gen_number_input_validation commaFormattedValue" }))
+                </div>
+
+                // only one item is expected
+                break;
+            }

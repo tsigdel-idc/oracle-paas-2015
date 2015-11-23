@@ -1,0 +1,119 @@
+
+/*********/
+/*Nav Bar*/
+/*********/
+
+.cursor-context-menu{
+  cursor: context-menu;
+}
+
+.nav-bar-brand-title{
+  font-size: 30px;
+    line-height: 30px;
+  
+  font-family: 'Open Sans', Arial, serif;
+  font-weight: 700;
+  color: #555555;
+}
+
+.nav-bar-brand-logo{
+  margin-right: 25px; 
+  margin-bottom: 10px;
+}
+
+.nav-bar-background-color{
+  /*background: #ffffff;*/
+  background: #fefefe;
+
+}
+/********/
+/*Footer*/
+/********/
+.footer-background-color{
+  /*background: #ffffff;*/
+  /*background: #f5f5f5;*/
+  background: #fdfdfd;
+  border-top: 1px solid #e0eded;
+  border-bottom: 1px solid #e0eded;
+  color: #555555!important;  
+  
+}
+
+footer h4 {  
+  color: #555555!important;
+  
+}
+
+footer a {
+  color: #555555!important;
+  /*text-decoration: underline !important;*/
+
+
+}
+
+footer .copyright {
+  color: #555555!important;
+}
+
+footer a:hover { 
+    color: #3498DB !important;
+    /*font-weight: bold !important;*/
+
+    
+}
+
+.footer-hr-margin{
+  margin-top: 5px;
+  margin-bottom: 5px;
+}
+
+/********/
+/*bootstrap table*/
+/********/
+.btn-default {  
+  border-color: #ccc !important;
+}
+
+/********/
+/*Sky Form*/
+/********/
+.sky-form .radio, .sky-form .checkbox {
+
+  font-size: 13px !important;
+
+}
+
+label.error {
+    color: red;
+}
+
+img.section {
+    float: left; 
+    margin-right: 30px; 
+    margin-left: 15px;  
+    height: 60px;
+}
+
+.loading {
+  position: fixed;
+  z-index: 999;
+  height: 2em;
+  width: 2em;
+  overflow: show;
+  margin: auto;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  right: 0;
+}
+
+.validation-summary-errors {
+    color: red;
+    font-size: larger;
+    font-weight: bold;
+}
+
+input[type=checkbox] {
+    height: 18px;
+    width: 18px;
+}

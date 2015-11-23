@@ -1,0 +1,53 @@
+﻿@using IDC.LeadCapture.BLL
+@model IDC.LeadCapture.Models.Account.User
+@{
+    ViewBag.Title = ResourceCache.Localize("DX LG | Restore User");
+    Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
+}
+
+<section class="slice bg-white">
+    <div class="wp-section">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="section-title-wr style-3">
+                        <h3 class="section-title left"><span>@ResourceCache.Localize("UI_Restore_User_title")</span></h3>
+                    </div>
+                    <p>@ResourceCache.Localize("UI_Restore_User_text")</p>
+                    <hr>
+                </div>
+            </div>
+            @using (Html.BeginForm(null, null, FormMethod.Post, new { @class = "sky-form" }))
+            {
+                @Html.AntiForgeryToken()
+                @Html.HiddenFor(m => m.Id)
+                @Html.ValidationSummary(false)
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="icon-block icon-block-2">
+                            <div class="icon-block-item red">
+                                <i class="fa fa-history"></i>
+                            </div>
+                            <div class="icon-block-body">
+                                <h4 class="">@ResourceCache.Localize("User")</h4>
+                                <ul class="list-check">
+                                    <li><i class="fa fa-caret-right"></i><strong>@ResourceCache.Localize("Name:")</strong> @Model.FullName</li>
+                                    <li><i class="fa fa-caret-right"></i><strong>@ResourceCache.Localize("Email:")</strong> @Model.Email</li>
+                                    <li><i class="fa fa-caret-right"></i><strong>@ResourceCache.Localize("Account Type:")</strong> @ResourceCache.Localize(Model.AccountType.ToString())</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <hr>
+                    <div class="col-md-12">
+                        <button type="button" class="btn btn-icon btn-base fa-close" onclick="location.href='@Url.Action("ManageUsers", "Admin")'" style="min-width:150px;padding-left:40px;">@ResourceCache.Localize("Cancel_en")</button>
+                        &nbsp;&nbsp;
+                        <button type="submit" class="btn btn-icon btn-base btn-icon-right btn-check" style="min-width:150px;padding-right:40px;">@ResourceCache.Localize("Yes_en")</button>
+                    </div>
+                </div>
+            }
+        </div>
+    </div>
+</section>

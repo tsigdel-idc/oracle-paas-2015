@@ -1,0 +1,105 @@
+﻿@using IDC.LeadCapture.BLL
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="robots" content="index, follow">
+    <link href="~/Content/images/idc-favicon.png" rel="icon" type="image/png">
+    <title>@ViewBag.Title</title>
+    @Scripts.Render("~/bundles/modernizr")
+    @Scripts.Render("~/bundles/jquery")
+    @Scripts.Render("~/bundles/bootstrap")
+    @Scripts.Render("~/bundles/sky-forms")
+    @Scripts.Render("~/bundles/bootstrap-table")
+
+    @Styles.Render("~/content/bundles/css")
+    <link href="@Url.Content("~/Content/css/global-style.css")" rel="stylesheet" type="text/css" />
+    <link href="@Url.Content("~/Content/css/custom-qn.css")" rel="stylesheet" type="text/css" />
+    <link href="@Url.Content("~/Content/sky-forms/css/sky-forms.css")" rel="stylesheet" type="text/css" />
+    <link href="//maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+    <div id="top" class="body-wrap">
+        <input type="hidden" id="error-msg" value="@ResourceCache.Localize("error_msg_en")" />
+        @Html.Hidden("Validation", null,
+        new
+        {
+            requiredMsg = ResourceCache.Localize("Please indicate_en"),
+            userNameMsg = ResourceCache.Localize("msg_valid_email"),
+            passwordMsg = ResourceCache.Localize("msg_password"),
+            newPasswordMsg = ResourceCache.Localize("msg_new_password"),
+            newPasswordConfirmMsg = ResourceCache.Localize("msg_conf_new_password"),
+            firstNameMsg = ResourceCache.Localize("Please indicate"),
+            lastNameMsg = ResourceCache.Localize("Please indicate"),
+            emailMsg = ResourceCache.Localize("msg_valid_email"),
+            descriptionMsg = ResourceCache.Localize("msg_enter_description")
+        })
+        <!-- HEADER -->
+        <div id="divHeaderWrapper">
+            <!-- HEADER: Standard 1 example - includes a top header (logo + buttons) and the main nav positioned under the top header -->
+            <header class="header-standard-2" style="background-color: grey !important;">
+                <!-- MAIN NAV -->
+                <div class="navbar navbar-wp navbar-arrow mega-nav nav-bar-background-color" role="navigation">
+                    <div class="container">
+                        <div class="navbar-header">
+                            <a class="navbar-brand" href="#" title="@ResourceCache.Localize("landing_navbar-brand")" style="cursor:default;">
+                                <span class="nav-bar-brand-title"><img src="~/Content/images/idc-logo.png" alt="@ResourceCache.Localize("alt_IDC_ogo")" class="nav-bar-brand-logo">@ResourceCache.Localize("landing_navbar_title_en")</span>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </header>
+        </div>
+        <br />
+
+        <div id="body">
+            @RenderBody()
+        </div>
+
+        <div class="modal fade" id="disclaimer" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                        <h4 class="modal-title" id="myModalLabel">@ResourceCache.Localize("admin_modal-title_en")</h4>
+                    </div>
+                    <div class="modal-body">
+                        @Html.Raw(ResourceCache.Localize("admin_modal-body_en"))
+                    </div>
+                    <div class="modal-footer">
+                        <a type="button" href="#" class="btn btn-icon btn-icon-right btn-base fa-times" data-dismiss="modal"><span>@ResourceCache.Localize("admin_modal-footer_en")</span></a>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <footer class="footer footer-background-color">
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-3 col-md-offset-9">
+                        <h4>@ResourceCache.Localize("SPONSORED BY_en")</h4>
+                        <a href="@ResourceCache.Localize("link_sap.com")"><img src="~/Content/images/sap-logo.png" alt="@ResourceCache.Localize("alt_SAP_logo")" style="height:40px;"></a>
+                    </div>
+                </div>
+                <hr class="footer-hr-margin">
+
+                <div class="row">
+                    <div class="col-sm-8 copyright">
+                        <a href="@ResourceCache.Localize("link_termsofuse_sap")">@ResourceCache.Localize("admin_Terms of Use_en")</a> | <a href="#" data-toggle="modal" data-target="#disclaimer">@ResourceCache.Localize("Disclaimer")</a> | <a href="mailto:@(SmtpMail.SupportEmailAddress)">@ResourceCache.Localize("admin_help_en")</a>
+                    </div>
+                    <div class="col-sm-4">
+                        <p class="text-right">@ResourceCache.Localize("idc_copyright_en")</p>
+                    </div>
+                </div>
+            </div>
+        </footer>
+    </div>
+
+    @Scripts.Render("~/bundles/jqueryui")
+    @Scripts.Render("~/bundles/jqueryval")
+    @Scripts.Render("~/bundles/custom-admin")
+
+    @RenderSection("scripts", required: false)
+</body>
+</html>

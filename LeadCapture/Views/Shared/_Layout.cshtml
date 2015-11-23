@@ -1,0 +1,78 @@
+﻿@using IDC.LeadCapture.BLL
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="robots" content="index, follow">
+    <title>@ViewBag.Title</title>
+    <link rel="icon" href="~/assets/img/idc.png" type="image/png">
+    <!-- Web Fonts -->
+    <link rel="stylesheet" href="//fonts.googleapis.com/css?family=Open+Sans:400,300,600&amp;subset=cyrillic,latin">
+    @Styles.Render("~/assets/css")   
+<!--[if lt IE 9]><link rel="stylesheet" href="@Url.Content("~/Assets/plugins/sky-forms-pro/skyforms/css/sky-forms-ie8.css")"><![endif]-->
+</head>
+<body>
+<div class="wrapper">
+    <div class="header">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-3">
+                    <a class="logo" href="/">
+                        <img class="shrink-logo" src="~/Content/images/logo-idc-large.png" alt="Logo" style="height:60px;">
+                    </a>
+                </div>
+                <div class="col-md-6">
+                    <div class="topbar" style="padding-top:5px;">
+                        <h1>@ResourceCache.Localize("layout_header")</h1>
+                        <h4 style="font-style:italic; margin-left:10px; line-height:1.1">@ResourceCache.Localize("layout_header1")</h4>
+                    </div>
+                </div>
+            </div>
+            <br>       
+        </div>
+    </div>
+
+    <div class="container">
+        <div class="spacer20"></div>
+        <div class="row">
+            <div class="col-md-2 col-md-offset-10 pull-right">
+                <img src="~/Content/images/ricoh-ic-vector.png" style="height:40px;">
+            </div>
+        </div>
+        @RenderBody()
+        <br />        
+    </div>
+    <div class="loading" style="display: none"><i class="fa fa-spinner fa-pulse fa-2x fa-fw"></i></div>
+    <div class="footer-v2">
+        <div class="copyright">
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-6">
+                        <p>
+                            <a href="#">@ResourceCache.Localize("Terms of Use")</a> | <a href="#">@ResourceCache.Localize("Disclaimer")</a>
+                        </p>
+                    </div>
+                    <div class="col-md-3"></div>
+                    <div class="col-md-3">@ResourceCache.Localize("Powered by")<img src="~/Content/images/logo-idc.png" height="30" style="margin-left:20px;"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+    @Scripts.Render("~/bundles/modernizr")
+    @Scripts.Render("~/bundles/jquery")
+    @Scripts.Render("~/bundles/assets/bootstrap")
+    @Scripts.Render("~/bundles/assets/sky-forms")
+    @Scripts.Render("~/bundles/assets/plugins")
+    @Scripts.Render("~/bundles/custom-assessment")
+
+    <!--[if lt IE 9]>
+        <script src="@Url.Content("~/Assets/plugins/sky-forms-pro/sky-forms/js/sky-forms-ie8.js")"></script>
+    <![endif]-->
+    <!--[if lt IE 10]>
+        <script src="@Url.Content("~/Assets/plugins/sky-forms-pro/sky-forms/js/jquery.placeholder.min.js")"></script>
+    <![endif]-->
+    @RenderSection("scripts", required: false)
+</body>
+</html>

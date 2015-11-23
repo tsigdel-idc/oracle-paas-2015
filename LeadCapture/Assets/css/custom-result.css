@@ -1,0 +1,86 @@
+.level-image {
+  width: 100%;
+}
+
+.service-block {
+  padding:5px;
+}
+
+.service-block-light, .service-block-default{
+  border: solid #eee;
+  background: #fff;
+  min-height: 450px;
+}
+
+ul.custom-image, ol.custom-image {
+	text-align: left;
+}
+
+ul.custom-image > li {
+	margin-left: -20px;
+	font-size: 12px;
+	line-height: 1.25;
+  margin-bottom:5px;
+}
+
+.column {
+  width: 25%;
+  position: relative;
+  float: left;
+  padding-left: 15px;
+  padding-right: 15px;
+}
+
+h2.heading-md {
+  font-size: 15px;
+  line-height: 10px;
+  color:#121212;
+  font-weight: normal;
+  margin-top: 10px;
+}
+
+.rounded{
+  border-radius: 10px !important;
+}
+
+i.icon-2x {
+  font-size: 30px;
+}
+
+.color-dark {
+  color: #121212;
+}
+
+.highlight {
+	border:5px solid #a10f2b;
+	margin:0 -5px;
+	padding-top: 10px;
+  background: #fff;
+}
+
+.maturity-icon {
+	height:25px;
+}
+
+.hr-custom{
+    margin: 5px 0px 5px 0px !important;
+}
+
+h3.panel-title {
+  margin-top: 10px;
+  margin-bottom: 5px;
+  font-size: 25px;
+  line-height: 21px;
+}
+
+.modal-dialog {
+  width:450px;
+}
+
+.close {
+  margin: 0px 0px 0px 0;  
+}
+
+.reg-page {
+  padding-bottom: 0px;
+}

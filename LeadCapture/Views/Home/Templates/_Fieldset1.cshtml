@@ -1,0 +1,62 @@
+﻿@using IDC.LeadCapture.Models.Assessment
+@using IDC.LeadCapture.BLL
+@model List<Question>
+
+@{
+    string section = null;
+    bool nextSection = true;
+    bool firstSection = true;
+
+    <fieldset class="form-group">
+    @foreach (var question in Model)
+    {
+        nextSection = string.IsNullOrEmpty(question.Section);
+
+        if (!nextSection)
+        {
+            nextSection = section != question.Section;
+            section = question.Section;
+        }
+
+        if (nextSection && !string.IsNullOrEmpty(section))
+        {
+            <header>@question.Section</header>
+        }
+
+        if (firstSection)
+        {
+            firstSection = false;
+            if (TempData["Subtitle"] != null)
+            {
+                <h5 class="margin-bottom-20" style="font-size:17px;">@TempData["Subtitle"]</h5>
+            }
+        }
+        else if (nextSection)
+        {
+            @:</fieldset>
+            @:<fieldset class="form-group">
+        }
+        <label class="control-label">@question.Text</label>
+        <div class="row">
+            @switch (question.Type)
+            {
+                case AnswerType.Text:
+                    Html.RenderPartial("Templates/_TextBox", question);
+                    break;
+                case AnswerType.Radio:
+                    Html.RenderPartial("Templates/_RadioButton", question);
+                    break;
+                case AnswerType.DropDown:
+                    Html.RenderPartial("Templates/_DropDown", question);
+                    break;
+                case AnswerType.Checkbox:
+                    Html.RenderPartial("Templates/_CheckBox", question);
+                    break;
+                case AnswerType.Integer:
+                    Html.RenderPartial("Templates/_IntegerBox", question);
+                    break;
+            }
+        </div>
+    }
+</fieldset>
+}

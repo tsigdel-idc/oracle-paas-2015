@@ -1,0 +1,30 @@
+﻿@using IDC.LeadCapture.Models.Assessment
+@using IDC.LeadCapture.BLL
+@model Question
+@{
+    // complete items list
+    var qiList = QuestionCache.GetQuestion(Model.OrderNo).Answers;
+
+    foreach (var item in qiList)
+    {
+        if (!Model.Answers.Any(x => x.AnswerChoiceId == item.AnswerChoiceId)) { Model.Answers.Add(item); }
+    }
+}
+                <section class="col col-12">
+                @foreach (var item in Model.Answers.OrderBy(x => x.OrderNo))
+                {
+                    if (item.Type != AnswerType.Checkbox) { continue; }
+                    <label class="checkbox">
+                    @if (item.AlternativeAnswer)
+                    {
+                        <input id="@item.Name" name="@item.Name" type="checkbox" value="true" @(item.Selected ? "checked" : "" ) class="noa" /><i></i>@item.Text
+                    }
+                    else
+                    {
+
+                        <input id="@item.Name" name="@item.Name" type="checkbox" value="true" @(item.Selected ? "checked" : "") /><i></i>@item.Text
+                    }
+                        <input name="@item.Name" type="hidden" value="false" />
+                    </label>
+                }
+                </section>

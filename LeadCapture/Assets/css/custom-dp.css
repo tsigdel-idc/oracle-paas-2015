@@ -1,0 +1,58 @@
+/* All custom CSS 
+   Devanshi Patel
+*/
+
+/* Questions font size */
+
+.sky-form .label, .control-label {
+	font-size: 14px;
+	font-weight: bold;
+	color:#303030;
+}
+
+/* Options(Answers) font size */
+.sky-form .radio, .sky-form .checkbox {
+	font-size: 14px;
+}
+
+/*Options(Answers) when checked */
+/* checked state */
+/**/
+.sky-form .radio input + i:after {
+  top: 5px;
+  left: 5px;
+  background-color: #fff;  
+}
+.sky-form .checkbox input + i:after {
+  color: #fff;
+}
+
+.sky-form .radio input:checked + i,
+.sky-form .checkbox input:checked + i,
+.sky-form .toggle input:checked + i {
+  border-color: #3C763D;
+  background-color: #3C763D;  
+}
+
+.sky-form header {
+  background: rgba(248,248,248,.9);
+}
+
+.header-custom {
+  background: rgba(248,248,248,.9);
+  border-top: 1px solid #eee;
+  border-bottom: 1px solid #eee;
+}
+
+.loading {
+  position: fixed;
+  z-index: 999;
+  height: 0;
+  width: 0;
+  overflow: show;
+  margin: auto;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  right: 0;
+}

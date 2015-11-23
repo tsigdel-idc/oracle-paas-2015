@@ -1,0 +1,37 @@
+﻿@using IDC.LeadCapture.Models.Assessment
+@using IDC.LeadCapture.BLL
+@model Question
+@{  bool first = true;  
+    long selectedChoiceId = 0;
+
+    if (Model.Answers.Count(x => x.Type == AnswerType.Radio) <= 1)
+    {
+        // complete items list
+        var selectedItem = Model.Answers.FirstOrDefault(x => x.Type == AnswerType.Radio);
+        if (selectedItem != null) { selectedChoiceId = selectedItem.AnswerChoiceId; }
+
+        var qiList = QuestionCache.GetQuestion(Model.OrderNo).Answers;
+
+        foreach (var item in qiList)
+        {
+            if (item.AnswerChoiceId != selectedChoiceId) { Model.Answers.Add(item); }
+        }
+    }
+}
+                <section class="col col-12">               
+                @foreach (var item in Model.Answers.OrderBy(x => x.OrderNo))
+                {
+                    if (item.Type == AnswerType.Radio)
+                    {
+                        if (first)
+                        {
+                            <label class="radio"><input id="@Model.Name" name="@Model.Name" type="radio" value="@item.AnswerChoiceId" @(item.Selected ? "checked='checked' " : "") @Html.Raw(Model.ValidationText) /><i class="rounded-x"></i>@item.Text</label>
+                            first = false;
+                        }
+                        else
+                        {
+                            <label class="radio"><input id="@Model.Name" name="@Model.Name" type="radio" value="@item.AnswerChoiceId" @(item.Selected ? "checked='checked' " : "") /><i class="rounded-x"></i>@item.Text</label>
+                        }
+                    }
+                }
+                </section>

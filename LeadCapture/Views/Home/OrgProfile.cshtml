@@ -1,0 +1,32 @@
+﻿@using IDC.LeadCapture.BLL
+@using IDC.LeadCapture.Models.Assessment
+@model Assessment
+@{
+    ViewBag.Title = ResourceCache.Localize("title_profile");
+    TempData["Subtitle"] = ResourceCache.Localize("subtitle_p2");
+}
+<div class="margin-bottom-20">
+    <h3 class="heading-sm">@ResourceCache.Localize("Progress") (<span id="progressText">0</span>%)</h3>
+    <div class="progress progress-u progress-xs rounded">
+        <div id="progressBar" class="progress-bar progress-bar-red" role="progressbar" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100" style="width: 0%; background:#A10F2B;"></div>
+    </div>
+</div>
+<div class="row">
+    <input type="hidden" id="retry" value="false">
+    @Html.Hidden("TargetPage", Session["TargetPage"])
+    <input type="hidden" id="errorMsg" value="@ResourceCache.Localize("error_msg")">
+    <div class="col-md-12">
+        @using (Html.BeginForm("Assessment", "Home", FormMethod.Post, new { @id = "myForm", @name = "myForm", @class = "sky-form", data_fv_framework = "bootstrap", data_fv_icon_valid = "glyphicon glyphicon-ok", data_fv_icon_invalid = "glyphicon glyphicon-remove", data_fv_icon_validating = "glyphicon glyphicon-refresh", data_fv_onsuccess = "onFormSuccess" }))
+        {
+            @Html.AntiForgeryToken()
+            @Html.Hidden("CurrentPage", Model.CurrentPageNo)
+
+            Html.RenderPartial("Templates/_Fieldset1", Model.Questions);
+
+            <footer>
+                <button type="button" class="btn-u btn-u-default" onclick="window.location = '@Url.Action("Questionnaire", "Home")'">@ResourceCache.Localize("navigation_back")</button>
+                <button type="submit" class="btn-u">@ResourceCache.Localize("navigation_next")</button>
+            </footer>
+        }
+    </div>
+</div>

@@ -1,0 +1,12 @@
+﻿@using IDC.LeadCapture.Models.Assessment
+@model Question
+                <section class="col col-md-6">
+                @foreach (var item in Model.Answers)
+                {
+                    if (item.Type != AnswerType.Text) { continue; }
+                    <label class="input">
+                        <input type="text" name="@item.Name" placeholder="@Model.AltText" class="form-control" @Html.Raw(Model.ValidationText) maxlength="80" value="@item.Value" >
+                    </label>
+                    break; // only one item is expected
+                }
+                </section>

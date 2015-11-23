@@ -1,0 +1,58 @@
+Test URL:             http://www.uat-innovativeorganizationindex.com.asp1-14.ord1-1.websitetestlink.com
+
+DNS:
+•	dns1.stabletransit.com
+•	dns2.stabletransit.com
+FTP:
+•	ftp: ftp.ord1-1.websitesettings.com
+•	usr: rioilgftpt
+•	pw: IDCappd3v
+
+MSSQL 2014 server: 
+•	server IP: 23.253.3.36,4120
+•	db name: 943078_db_rioilg_t
+•	db user: 943078_usr_rioilg_t
+•	db user pw: IDCappd3v
+
+Email Server:
+
+•	Host: mail.innovativeorganizationindex.com
+
+no-reply@innovativeorganizationindex.com
+password: yD9EkS5he5dXQjk
+support@innovativeorganizationindex.com
+password: gXfzyNt6UwRCsGM
+
+
+***************************************************************************
+
+URL:                     http://www.innovativeorganizationindex.com
+Test URL:             http://www.innovativeorganizationindex.com.asp1-14.ord1-1.websitetestlink.com
+
+
+DNS:
+•	dns1.stabletransit.com
+•	dns2.stabletransit.com
+FTP:
+•	ftp: ftp.ord1-1.websitesettings.com
+•	usr: rioilgftpp
+•	pw: ms568q95stm7zXJ
+
+MSSQL 2014 server: 
+•	server IP: 23.253.3.36,4120
+•	db name: 943078_db_rioilg_p
+•	db user: 943078_usr_rioilg_p
+•	db user pw: p324RrfzSuaqbAA
+
+Email Server:
+
+•	Host: mail.innovativeorganizationindex.com
+
+no-reply@innovativeorganizationindex.com
+password: yD9EkS5he5dXQjk
+support@innovativeorganizationindex.com
+password: gXfzyNt6UwRCsGM
+
+DNS MX Record:
+http://www.rackspace.com/knowledge_center/article/set-up-dns-records-for-email-and-hosted-lync
+

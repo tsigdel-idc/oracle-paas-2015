@@ -1,0 +1,29 @@
+﻿@using IDC.LeadCapture.BLL
+@{
+    ViewBag.Title = ResourceCache.Localize("Server Error");
+}
+
+<section class="slice bg-white">
+    <div class="wp-section">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-12">
+                    <section>
+                        <h1 style="font-size: 26px;">@ResourceCache.Localize("Internal Server Error")</h1>
+                        <div class="jumbotron">
+                            <p><span class="glyphicon glyphicon-alert" aria-hidden="true"></span>@ResourceCache.Localize("Server Error - txt")</p>
+                        </div>
+                        <br />
+                    </section>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-6">
+                    <div>
+                        <button type="button" class="btn-u btn-u-default" onclick="window.history.back();">@ResourceCache.Localize("navigation_back")</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>

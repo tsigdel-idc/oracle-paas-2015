@@ -1,0 +1,32 @@
+﻿@using IDC.LeadCapture.BLL
+@{
+    ViewBag.Title = ResourceCache.Localize("title_landing");
+    Layout = "~/Views/Shared/_LayoutLanding.cshtml";
+}
+        <div class="container">
+            <div class="row">
+                <div class="col-md-9">
+                    <h2>@ResourceCache.Localize("landing_header")</h2>
+                    <p style="font-size:15px;">@ResourceCache.Localize("landing_text")</p>
+                    <ul class="list-unstyled index-list">
+                        <li><i class="fa fa-caret-right"></i>&nbsp;@ResourceCache.Localize("landing_text_1")</li>
+                        <li><i class="fa fa-caret-right"></i>&nbsp;@ResourceCache.Localize("landing_text_2")</li>
+                    </ul>
+                </div>
+                <div class="col-md-3">
+                    <div class="spacer50"></div>
+                    <a href="@Url.Action("Questionnaire", "Home")" class=" btn-u btn-u-sea-shop btn-block margin-bottom-20" id="letsgo"><i class="fa fa-arrow-right"></i>&nbsp;@ResourceCache.Localize("navigation_start")</a>
+                </div>
+                <br>
+            </div>
+        </div>
+
+@section scripts {
+    <script>
+
+    jQuery(document).ready(function() {
+      	App.init();
+    });
+
+    </script>
+}

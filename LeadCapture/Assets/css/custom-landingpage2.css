@@ -1,0 +1,251 @@
+/* All custom CSS for Landing Page 2
+   Devanshi Patel
+*/
+
+/* Landing Page Overall*/
+
+* {
+  font-family: 'Open Sans', sans-serif;
+}
+
+
+.log-reg-v3 h2.welcome-title {
+  font-size: 34px;
+  font-weight: 200;
+  line-height: 50px;
+  margin-top: -10px;
+  margin-bottom: 20px;
+}
+
+.log-reg-v3 .site-statistics {
+  padding: 10px;
+  text-align: center;
+  background: #f8f8f8;
+}
+
+.log-reg-v3 .site-statistics span {
+  color: #888;
+  display: block;
+  font-size: 26px;
+  font-weight: 200;
+  position: relative;
+  margin-bottom: 10px;
+}
+
+.log-reg-v3 .site-statistics small {
+  color: #888;
+  font-size: 12px;
+  text-transform: uppercase;
+}
+
+.log-reg-v3 .members-number {
+  text-align: center;
+}
+
+/* Sky Form */
+.log-reg-v3 .log-reg-block {
+  padding: 20px;
+  margin-bottom: 20px;
+  box-shadow: 0 0 2px #ccc;
+}
+
+.log-reg-v3 .log-reg-block h2 {
+  text-align: center;
+  margin-bottom: 20px;
+  text-transform: uppercase;
+}
+
+.log-reg-v3 .reg-input section {
+  margin-bottom: 15px;
+}
+
+.log-reg-v3 .reg-input .input, .log-reg-v3 .reg-input .select {
+  display: block;
+}
+
+/*.log-reg-v3 .log-reg-block label {
+  font-weight: normal;
+}*/ 
+
+.log-reg-v3 .reg-input .input input {
+  width: 100%;
+}
+
+.log-reg-v3 .login-input .form-control {
+  color: #555;
+  font-weight: 600;
+}
+
+.log-reg-v3 .login-input span, .log-reg-v3 .login-input input {
+  color: #ccc;
+  border-color: #ccc;
+}
+
+.log-reg-v3 .login-input input {
+  height: 40px;
+}
+
+.log-reg-v3 .reg-input .input, .log-reg-v3 .reg-input .select {
+  display: block;
+}
+
+.log-reg-v3 .reg-input select {
+  font-weight: 200;
+  min-height: 40px;
+  color: #888 !important;
+}
+
+.log-reg-v3 .checkbox {
+  color: #999;
+  margin-top: 0;
+  cursor: pointer;
+  font-size: 14px;
+  line-height: 25px;
+  padding-left: 27px;
+  font-weight: normal;
+}
+
+.log-reg-v3 .checkbox {
+  display: block;
+  overflow: hidden;
+  position: relative;
+}
+
+.log-reg-v3 .checkbox input {
+  left: -9999px;
+  position: absolute;
+}
+
+.log-reg-v3 .checkbox input:checked + i {
+  border-color: #b61332;
+}
+
+.log-reg-v3 .checkbox i {
+  border-color: #b61332;
+  -ms-transition: border-color 0.3s;
+  -moz-transition: border-color 0.3s;
+  -webkit-transition: border-color 0.3s;
+}
+
+.log-reg-v3 .checkbox i {
+  left: 0;
+  top: 5px;
+  width: 15px;
+  height: 15px;
+  outline: none;
+  display: block;
+  background: #fff;
+  border-width: 2px;
+  position: absolute;
+  border-style: solid;
+}
+
+.log-reg-v3 .checkbox input + i:after {
+  color: #b61332;
+}
+
+.log-reg-v3 .checkbox input + i:after {
+  top: -3px;
+  left: -2px;
+  width: 15px;
+  height: 15px;
+  content: '\f00c';
+  text-align: center;
+  font: normal 8px/17px FontAwesome;
+}
+
+.log-reg-v3 .checkbox input:checked + i:after {
+  opacity: 1;
+}
+
+.log-reg-v3 .checkbox input + i:after {
+  opacity: 0;
+  position: absolute;
+}
+
+
+.content-md {
+  padding-top: 0px;
+}
+
+.footer-default .copyright {
+  padding: 0px;
+  background: none;
+}
+
+.footer-default .copyright p {
+  color:#555;
+}
+
+/* Sky form CSS */
+.sky-form .label, .control-label {
+  font-size: 14px;
+  font-weight: bold;
+  color: #303030;
+}
+
+/* Timeline CSS */
+.timeline-v2 > li .cbp_tmicon {
+  background: #a10f2b !important;
+}
+
+.level-image {
+  width:110px;
+}
+
+.timeline-v2 > li .cbp_tmtime span {
+  top: 18px !important;
+}
+
+#letsgo {
+  padding:10px;
+  font-size: 18px;
+}
+
+/* Banner-image CSS for landingpage-final.html */
+.banner-image {
+  margin-left: 15px;
+  padding: 70px 0;
+  padding-bottom: 70px;
+  border-bottom:1px solid #ccc;
+  border:1px solid #ccc; 
+  border-top:none;
+  text-align: center;
+  position: relative;
+  background-color: #f9fafb;
+}
+
+
+/* timeline CSS */
+.timeline-v2 > li .cbp_tmlabel {
+  background: none !important;
+  border:1px solid #d4d4d4;
+}
+
+.timeline-v2 > li .cbp_tmlabel {
+  margin: 0 0 20px 25% !important;
+}
+
+.timeline-v2 > li .cbp_tmlabel ul{
+  padding:0px;
+    list-style: none;
+    margin-left: 0;
+    padding-left: 1em;
+}
+
+.timeline-v2 > li .cbp_tmlabel li {
+  list-style: none;
+  padding: 0;
+  line-height: 1.6;
+}
+
+.timeline-v2 > li .cbp_tmlabel li:before {
+  display: inline-block;
+  content: "-";
+  width: 0.8em;
+  margin-left: -1em;
+}
+
+.timeline-v2 > li .cbp_tmtime {
+  width:29% !important;
+}

@@ -1,0 +1,29 @@
+﻿@using IDC.LeadCapture.BLL
+@{
+    ViewBag.Title = ResourceCache.Localize("Page Not Found");
+}
+
+<section class="slice bg-white">
+    <div class="wp-section">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-12">
+                    <section>
+                        <h1 style="font-size: 26px;">@ResourceCache.Localize("page_not_found_title")</h1>
+                        <div class="jumbotron">
+                            <p><span class="glyphicon glyphicon-alert" aria-hidden="true"></span>@ResourceCache.Localize("page_not_found_text")</p>
+                        </div>
+                        <br />
+                    </section>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-6">
+                    <div>
+                        <a href="/" class="btn btn-icon btn-base fa-chevron-left" style="min-width:150px;padding-right:30px;"><span>@ResourceCache.Localize("navigation_home")</span></a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>

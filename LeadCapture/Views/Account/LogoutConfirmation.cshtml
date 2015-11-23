@@ -1,0 +1,34 @@
+﻿@using IDC.LeadCapture.BLL
+@{
+    ViewBag.Title = ResourceCache.Localize("DX LG | Sign Out");
+    Layout = "~/Views/Shared/_LayoutAccount.cshtml";
+}
+
+<section class="slice bg-white">
+    <div class="wp-section">
+        <div class="container">
+            <div class="row">
+                <hr>
+                <div class="col-md-12">
+                    <div class="icon-block icon-block-2">
+                        <div class="icon-block-item green">
+                            <i class="fa fa-sign-out "></i>
+                        </div>
+                        <div class="icon-block-body">
+                            <h4 class="">@ResourceCache.Localize("Sign Out")</h4>
+                            <p>@ResourceCache.Localize("Sign Out Confirmation")</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-12">
+                    <hr>
+                    <a href="/" class="btn btn-icon btn-base fa-chevron-left" style="min-width:150px;padding-right:30px;"><span>@ResourceCache.Localize("Navigation_Home_en")</span></a>
+                    <a href="@Url.Action("Login", "Account")" class="btn btn-icon btn-base fa-sign-in btn-icon-right" style="min-width:150px;"><span>@ResourceCache.Localize("Sign In")</span></a>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+

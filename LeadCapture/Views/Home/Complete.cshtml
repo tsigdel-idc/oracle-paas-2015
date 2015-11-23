@@ -1,0 +1,43 @@
+﻿@using IDC.LeadCapture.BLL
+@using IDC.Common
+@{
+    ViewBag.Title = ResourceCache.Localize("finalpage_title");
+}
+
+<section class="slice light-gray" style="padding:50px 0;">
+    <div class="wp-section">
+        <div class="text-center">
+            <h2>@ResourceCache.Localize("finalpage_header")</h2>
+            <p>
+                @ResourceCache.Localize("finalpage_text1")
+                <br />
+                <br />
+                @Html.Raw(string.Format(ResourceCache.Localize("finalpage_text2"), ResourceCache.Localize("link_redirect_sap"), Helper.GetUrlPath(ResourceCache.Localize("link_redirect_sap"))))
+            </p>
+        </div>
+    </div>
+</section> 
+
+@section scripts {
+@Scripts.Render("~/Scripts/jquery.countdown.min.js")
+
+<script>
+
+    $(function () {        
+        var $clock = $('#clock');
+        var newDate = new Date(new Date().valueOf() + 15000);
+
+        $clock.countdown(newDate, function (event) {
+            $(this).html(event.strftime('%-S'));
+        })
+        .on('finish.countdown', function (event) {
+            redirect();
+        });
+    });
+
+    function redirect() {
+        window.location = "@ResourceCache.Localize("link_redirect_sap")";
+    }
+
+</script>
+}

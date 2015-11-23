@@ -1,0 +1,77 @@
+﻿@using System.Globalization
+@using IDC.LeadCapture.BLL
+@model List<IDC.LeadCapture.Models.Admin.Campaign>
+@{
+    ViewBag.Title = ResourceCache.Localize("DX LG | Manage Lead Sources");
+    Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
+}
+
+<section class="slice bg-white">
+    <div class="wp-section">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="section-title-wr style-3">
+                        <h3 class="section-title left"><span>@ResourceCache.Localize("Manage Lead Sources")</span></h3>
+                    </div>
+                    <div id="toolbar" class="btn-group">
+                        <a href="@Url.Action("EditLeadSource", "Admin")" class="btn btn-default"><i class="fa fa-plus-square"></i>@ResourceCache.Localize("Add New")</a>
+                        @if (ViewBag.IncludeDeleted != null && ViewBag.IncludeDeleted == "True")
+                        {
+                            <a href="@Url.Action("ManageLeadSources", "Admin")" type=" button" class="btn btn-default"><i class="fa fa-folder"></i>@ResourceCache.Localize("Hide Deleted")</a>
+                        }
+                        else
+                        {
+                            <a href="@Url.Action("ManageLeadSources", "Admin", new { includeDeleted = "true" })" type=" button" class="btn btn-default"><i class="fa fa-folder-open"></i>@ResourceCache.Localize("View Deleted")</a>
+                        }
+                    </div>
+                    <table data-toggle="table"
+                           data-search="true"
+                           data-show-toggle="true"
+                           data-show-columns="true"
+                           data-sortable="true"
+                           data-minimum-count-columns="4"
+                           data-show-export="true"
+                           data-detail-view="true"
+                           data-pagination="true"
+                           data-page-list="[10, 25, 50, 100, ALL]"
+                           data-toolbar="#toolbar"
+                           @*data-locale="@CultureInfo.CurrentUICulture.TextInfo.CultureName"*@>
+                        <thead>
+                            <tr>
+                                <th>@ResourceCache.Localize("ID")</th>
+                                <th>@ResourceCache.Localize("Source Description")</th>
+                                <th>@ResourceCache.Localize("Source Link")</th>
+                                <th>@ResourceCache.Localize("Status")</th>
+                                <th>@ResourceCache.Localize("Action")</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @foreach (var item in Model)
+                            {
+                                <tr>
+                                    <td>@item.Id</td>
+                                    <td>@item.Description</td>
+                                    <td>@item.Link</td>
+                                    <td>@ResourceCache.Localize(item.Status.ToString())</td>
+                                    <td>
+                                        <a href="@Url.Action("EditLeadSource", "Admin", new { id = item.Id })">@ResourceCache.Localize("Edit")</a>
+                                        &nbsp;&#8226;&nbsp;
+                                        @if (item.Disabled)
+                                        {
+                                            <a href="@Url.Action("RestoreLeadSource", "Admin", new { id = item.Id })">@ResourceCache.Localize("Restore")</a>
+                                        }
+                                        else
+                                        {
+                                            <a href="@Url.Action("DeleteLeadSource", "Admin", new { id = item.Id })">@ResourceCache.Localize("Delete")</a>
+                                        }
+                                    </td>
+                                </tr>
+                            }
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>

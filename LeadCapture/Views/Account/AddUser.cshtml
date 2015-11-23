@@ -1,0 +1,82 @@
+﻿@using IDC.LeadCapture.BLL
+@model IDC.LeadCapture.Models.Account.User
+@{
+    ViewBag.Title = ResourceCache.Localize("DX LG | Add User");
+    Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
+}
+
+<section class="slice bg-white">
+    <div class="wp-section">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="section-title-wr style-3">
+                        <h3 class="section-title left"><span>@ResourceCache.Localize("Add User")</span></h3>
+                    </div>
+                    <hr>
+                    <p><font color="red">*</font> @ResourceCache.Localize("required_field_msg")</p>
+                    <hr>                    
+                </div>
+            </div>
+            @using (Html.BeginForm(null, null, FormMethod.Post, new { @class = "sky-form" }))
+            {
+                @Html.AntiForgeryToken()
+                @Html.ValidationSummary(false)
+                <div class="row">
+                    <div class="col-md-6">
+                        <div class="form-body">
+                            <div class="form-group">
+                                <section>
+                                    <label class="label">@ResourceCache.Localize("Account Type") <font color="red">*</font></label>
+                                    <div class="col-md-12">
+                                        <label class="radio"><input name="group-size" type="radio" checked><i></i>@ResourceCache.Localize("Admin")</label>
+                                        <br />
+                                    </div>
+                                </section>
+                                <section>
+                                    <label class="label">@ResourceCache.Localize("Email") <font color="red">*</font></label>
+                                    <label class="input">
+                                        <i class="icon-append fa fa-user"></i>
+                                        @Html.TextBoxFor(m => m.Email, new { @maxlength = "80" })                                       
+                                    </label>
+                                </section>                            
+                                <section>
+                                    <label class="label">@ResourceCache.Localize("First name") <font color="red">*</font></label>
+                                    <label class="input">
+                                        <i class="icon-append fa fa-user"></i>
+                                        @Html.TextBoxFor(m => m.FirstName, new { @maxlength = "80" })
+                                    </label>
+                                </section>
+                                <section>
+                                    <label class="label">@ResourceCache.Localize("Last name") <font color="red">*</font></label>
+                                    <label class="input">
+                                        <i class="icon-append fa fa-user"></i>
+                                        @Html.TextBoxFor(m => m.LastName, new { @maxlength = "80" })
+                                    </label>
+                                </section>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-12">
+                        <hr>
+                        <button type="button" class="btn btn-icon btn-base fa-close" onclick="location.href='@Url.Action("ManageUsers", "Admin")'" style="min-width:150px;padding-left:40px;">@ResourceCache.Localize("Cancel")</button>
+                        &nbsp;&nbsp;
+                        <button type="submit" class="btn btn-base btn-icon btn-icon-right btn-check" style="min-width:150px;padding-right:40px;">@ResourceCache.Localize("OK")</button>
+                    </div>
+                </div>
+            }
+        </div>
+    </div>
+</section>
+
+@section scripts {
+    <script>
+        $(function () {           
+            $("#Email").rules("add", { required: true, email: true, messages: { required: $("#Validation").attr('requiredMsg'), email: $("#Validation").attr('emailMsg') } });
+            $("#FirstName").rules("add", { required: true, messages: { required: $("#Validation").attr('firstNameMsg') } });
+            $("#LastName").rules("add", { required: true, messages: { required: $("#Validation").attr('lastNameMsg') } });
+        });
+</script>
+}

@@ -1,0 +1,73 @@
+.banner-image {
+	margin-left: 0px;
+    max-width: 100%;
+    height: 350px;
+    background-image: url("../../Content/images/new-landing.jpg");
+    padding: 0px 0px;
+}
+
+.title {
+	background-color: #fff;
+	opacity:0.85;
+}
+
+.timeline-v2 > li .cbp_tmlabel {
+	  margin: 0 0 60px 25% !important
+}
+
+.topbar h1 {
+	margin:12px;
+	font-size: 30px;
+	color: #A10F2B;
+}
+
+.header > .container {
+	margin-bottom: -30px;
+}
+
+
+/** Index ul li Style **/
+.index-list {
+	margin-left: 10px;
+}
+
+.index-list li {
+	margin:5px 0;
+}
+
+
+/** End Index ul li Style **/
+
+/** Ricoh Logo Ribbon **/
+div.left_ribbon {
+    margin-right: -12px;
+    float: right;
+}
+
+div.ribbon {
+    color: #fff;
+    position: relative;
+    text-transform: uppercase;
+    background: #eee;
+    border: 1px solid rgba(0,0,0,.3);
+    box-shadow: 0px 1px 3px rgba(0,0,0,.2);
+    padding: 10px 15px;
+    clear: both;
+}
+
+div.left_ribbon::before {
+    width: 10px;
+    height: 0px;
+    position: absolute;
+    bottom: -10px;
+    right: 0px;
+    content: "";
+    border-bottom: 10px solid transparent;
+    border-left: 10px solid rgb(0, 80, 116);
+    display: block;
+    max-width: 100%;
+}
+
+
+
+/** End Ricoh Logo Ribbon **/

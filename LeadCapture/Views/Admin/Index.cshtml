@@ -1,0 +1,94 @@
+﻿@using IDC.LeadCapture.BLL
+@{
+    ViewBag.Title = ResourceCache.Localize("DX LG | Dashboard");
+    Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
+}
+
+@{
+    string strView = @ResourceCache.Localize("View");
+    string strEdit = @ResourceCache.Localize("Edit");
+    string strChangePassword = @ResourceCache.Localize("Change Password");
+    string strAdd = @ResourceCache.Localize("Add");
+    string strDelete = @ResourceCache.Localize("Delete");
+    string strResetPassword = @ResourceCache.Localize("Reset Password");    
+    string strDownloadLeadsData = @ResourceCache.Localize("Download Leads Data");
+    string strViewToolUsage = @ResourceCache.Localize("View Tool Usage");    
+}
+<section class="slice bg-white">
+    <div class="wp-section">
+        @Html.AntiForgeryToken()
+        <div class="container">
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="section-title-wr style-3">
+                        <h3 class="section-title left"><span>@ResourceCache.Localize("Dashboard")</span></h3>
+                    </div>
+                </div>
+            </div>
+            <hr>
+            <br />
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="col-md-2 col-sm-4 col-md-offset-1">
+                        <a href="@Url.Action("MyProfile", "Account")">
+                            <div class="wp-block inverse text-center" style="cursor: pointer;">
+                                <div class="thmb-img">
+                                    <i class="fa fa-user"></i>
+                                </div>
+                                <h2>@ResourceCache.Localize("My Profile")</h2>
+                                <p>@strView &#8226; @strEdit &#8226; @strChangePassword</p>
+                            </div>
+                        </a>
+                    </div>
+                    @if (User.IsInRole("Admin") || User.IsInRole("Master"))
+                    {
+                    <div class="col-md-2 col-sm-4">
+                        <a href="@Url.Action("ManageLeadSources", "Admin")">
+                            <div class="wp-block inverse text-center" style="cursor: pointer;">
+                                <div class="thmb-img">
+                                    <i class="fa fa-share-alt"></i>
+                                </div>
+                                <h2>@ResourceCache.Localize("Manage Lead Sources")</h2>
+                                <p>@strView &#8226; @strAdd &#8226; @strEdit &#8226; @strDelete</p>
+                            </div>
+                        </a>
+                    </div>
+                    <div class="col-md-2 col-sm-4">
+                        <a href="@Url.Action("ManageUsers", "Admin")">
+                            <div class="wp-block inverse text-center" style="cursor: pointer;">
+                                <div class="thmb-img">
+                                    <i class="fa fa-users"></i>
+                                </div>
+                                <h2>@ResourceCache.Localize("Manage Users")</h2>
+                                <p>@strView &#8226; @strAdd &#8226; @strEdit &#8226; @strResetPassword &#8226; @strDelete</p>
+                            </div>
+                        </a>
+                    </div>
+                    <div class="col-md-2 col-sm-4">
+                        <a href="@Url.Action("DataMining", "Report")">
+                            <div class="wp-block inverse text-center" style="cursor: pointer;">
+                                <div class="thmb-img">
+                                    <i class="fa fa-database"></i>
+                                </div>
+                                <h2>@ResourceCache.Localize("Data Mining")</h2>
+                                <p>@strDownloadLeadsData</p>
+                            </div>
+                        </a>
+                    </div>
+                    <div class="col-md-2 col-sm-4">
+                        <a href="@Url.Action("UsageReport", "Report")">
+                            <div class="wp-block inverse text-center" style="cursor: pointer;">
+                                <div class="thmb-img">
+                                    <i class="fa fa-file-text-o"></i>
+                                </div>
+                                <h2>@ResourceCache.Localize("Usage Report")</h2>
+                                <p>@strViewToolUsage</p>
+                            </div>
+                        </a>
+                    </div>
+                    }
+                </div>
+            </div>
+        </div>
+    </div>
+</section>  

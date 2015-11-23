@@ -1,0 +1,1759 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+    <Schema Namespace="AssessmentModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="Answer">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="AssessmentQuestionId" Type="bigint" Nullable="false" />
+          <Property Name="QuestionItemId" Type="bigint" Nullable="false" />
+          <Property Name="AnswerChoiceId" Type="bigint" Nullable="false" />
+          <Property Name="Value" Type="nvarchar" MaxLength="2000" />
+          <Property Name="ResponseId" Type="bigint" Nullable="false" />
+          <Property Name="Deleted" Type="bit" Nullable="false" />
+          <Property Name="DateCreated" Type="datetime2" Precision="7" Nullable="false" />
+        </EntityType>
+        <EntityType Name="AnswerChoice">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="QuestionItemId" Type="bigint" />
+          <Property Name="Name" Type="nvarchar" MaxLength="200" />
+          <Property Name="Deleted" Type="bit" Nullable="false" />
+          <Property Name="DateCreated" Type="datetime2" Precision="7" Nullable="false" />
+        </EntityType>
+        <EntityType Name="AnswerType">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Name" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="MultipleChioce" Type="bit" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Assessment">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Name" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="Description" Type="nvarchar" MaxLength="200" />
+          <Property Name="Disabled" Type="bit" Nullable="false" />
+          <Property Name="DateCreated" Type="datetime2" Precision="7" Nullable="false" />
+        </EntityType>
+        <EntityType Name="AssessmentAnswerChoice">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="AssessmentQuestionId" Type="bigint" Nullable="false" />
+          <Property Name="Name" Type="nvarchar" MaxLength="50" />
+          <Property Name="OrderNo" Type="int" Nullable="false" />
+          <Property Name="TextId" Type="bigint" />
+          <Property Name="AnswerTypeId" Type="int" Nullable="false" />
+          <Property Name="QuestionItemId" Type="bigint" Nullable="false" />
+          <Property Name="AnswerChoiceId" Type="bigint" Nullable="false" />
+          <Property Name="AltQuestionItemId" Type="bigint" />
+          <Property Name="AlternativeAnswer" Type="bit" Nullable="false" />
+          <Property Name="Encrypted" Type="bit" Nullable="false" />
+          <Property Name="Score" Type="decimal" Precision="10" Scale="5" />
+          <Property Name="DateCreated" Type="datetime2" Precision="7" Nullable="false" />
+          <Property Name="Deleted" Type="bit" Nullable="false" />
+        </EntityType>
+        <EntityType Name="AssessmentQuestion">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="AssessmentId" Type="bigint" Nullable="false" />
+          <Property Name="Name" Type="nvarchar" MaxLength="50" />
+          <Property Name="Description" Type="nvarchar" MaxLength="200" />
+          <Property Name="OrderNo" Type="int" Nullable="false" />
+          <Property Name="TextId" Type="bigint" />
+          <Property Name="AltTextId" Type="bigint" />
+          <Property Name="ValidationTextId" Type="bigint" />
+          <Property Name="AnswerTypeId" Type="int" Nullable="false" />
+          <Property Name="SectionId" Type="bigint" />
+          <Property Name="PageNo" Type="int" />
+          <Property Name="QuestionGroup" Type="bit" Nullable="false" />
+          <Property Name="QuestionGroupId" Type="bigint" />
+          <Property Name="Deleted" Type="bit" Nullable="false" />
+          <Property Name="DateCreated" Type="datetime2" Precision="7" Nullable="false" />
+          <Property Name="Optional" Type="bit" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Campaign">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Guid" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="Name" Type="nvarchar" MaxLength="128" Nullable="false" />
+          <Property Name="Description" Type="nvarchar" MaxLength="256" Nullable="false" />
+          <Property Name="Disabled" Type="bit" Nullable="false" />
+          <Property Name="StartDate" Type="datetime2" Precision="7" />
+          <Property Name="EndDate" Type="datetime2" Precision="7" />
+          <Property Name="DateCreated" Type="datetime2" Precision="7" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Partner">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Name" Type="nvarchar" MaxLength="128" Nullable="false" />
+          <Property Name="PartnerDetailsId" Type="int" />
+          <Property Name="Disabled" Type="bit" Nullable="false" />
+          <Property Name="Deleted" Type="bit" Nullable="false" />
+          <Property Name="DateCreated" Type="datetime2" Precision="7" Nullable="false" />
+          <Property Name="DateUpdated" Type="datetime2" Precision="7" Nullable="false" />
+        </EntityType>
+        <EntityType Name="PartnerDetails">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Name" Type="nvarchar" MaxLength="128" Nullable="false" />
+          <Property Name="Email" Type="nvarchar" MaxLength="256" />
+          <Property Name="CCEmail" Type="nvarchar" MaxLength="256" />
+          <Property Name="BCCEmail" Type="nvarchar" MaxLength="256" />
+        </EntityType>
+        <EntityType Name="Question">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="ResourceId" Type="bigint" />
+          <Property Name="AnswerTypeId" Type="int" Nullable="false" />
+          <Property Name="Name" Type="nvarchar" MaxLength="50" />
+          <Property Name="Description" Type="nvarchar" MaxLength="200" />
+          <Property Name="Deleted" Type="bit" Nullable="false" />
+          <Property Name="DateCreated" Type="datetime2" Precision="7" Nullable="false" />
+        </EntityType>
+        <EntityType Name="QuestionItem">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="QuestionId" Type="bigint" />
+          <Property Name="ResourceId" Type="bigint" />
+          <Property Name="AnswerTypeId" Type="int" Nullable="false" />
+          <Property Name="Name" Type="nvarchar" MaxLength="50" />
+          <Property Name="Description" Type="nvarchar" MaxLength="200" />
+          <Property Name="Deleted" Type="bit" Nullable="false" />
+          <Property Name="DateCreated" Type="datetime2" Precision="7" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Resource">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Name" Type="nvarchar" MaxLength="200" Nullable="false" />
+          <Property Name="DefaultValue" Type="nvarchar" MaxLength="4000" />
+          <Property Name="ResourceTypeId" Type="bigint" />
+          <Property Name="Tag" Type="nvarchar" MaxLength="100" />
+          <Property Name="Deleted" Type="bit" Nullable="false" />
+          <Property Name="DateCreated" Type="datetime2" Precision="7" Nullable="false" />
+          <Property Name="DateUpdated" Type="datetime2" Precision="7" Nullable="false" />
+        </EntityType>
+        <EntityType Name="ResourceType">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Name" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="Description" Type="nvarchar" MaxLength="100" />
+          <Property Name="Deleted" Type="bit" Nullable="false" />
+          <Property Name="DateCreated" Type="datetime2" Precision="7" Nullable="false" />
+          <Property Name="DateUpdated" Type="datetime2" Precision="7" Nullable="false" />
+        </EntityType>
+        <EntityType Name="ResourceValue">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Value" Type="nvarchar" MaxLength="4000" Nullable="false" />
+          <Property Name="CultureName" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="ResourceId" Type="bigint" Nullable="false" />
+          <Property Name="Deleted" Type="bit" Nullable="false" />
+          <Property Name="DateCreated" Type="datetime2" Precision="7" Nullable="false" />
+          <Property Name="DateUpdated" Type="datetime2" Precision="7" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Response">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="ResponseKey" Type="uniqueidentifier" />
+          <Property Name="UserId" Type="bigint" />
+          <Property Name="PartnerId" Type="int" />
+          <Property Name="CampaignId" Type="bigint" />
+          <Property Name="Email" Type="nvarchar" MaxLength="128" />
+          <Property Name="AssessmentId" Type="bigint" />
+          <Property Name="CompletedPageNo" Type="int" />
+          <Property Name="CompletedQuestionNo" Type="int" />
+          <Property Name="Completed" Type="bit" Nullable="false" />
+          <Property Name="ReportSent" Type="bit" Nullable="false" />
+          <Property Name="Error" Type="bit" Nullable="false" />
+          <Property Name="Deleted" Type="bit" Nullable="false" />
+          <Property Name="DateCreated" Type="datetime2" Precision="7" Nullable="false" />
+          <Property Name="DateUpdated" Type="datetime2" Precision="7" Nullable="false" />
+          <Property Name="DateCompleted" Type="datetime2" Precision="7" />
+          <Property Name="DateReportSent" Type="datetime2" Precision="7" />
+          <Property Name="DateDeleted" Type="datetime2" Precision="7" />
+        </EntityType>
+        <EntityType Name="Role">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Name" Type="nvarchar" MaxLength="256" Nullable="false" />
+          <Property Name="Disabled" Type="bit" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Score">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="ResponseId" Type="bigint" Nullable="false" />
+          <Property Name="Overall" Type="decimal" Precision="10" Scale="5" Nullable="false" />
+          <Property Name="Domain1" Type="decimal" Precision="10" Scale="5" />
+          <Property Name="Domain2" Type="decimal" Precision="10" Scale="5" />
+          <Property Name="Domain3" Type="decimal" Precision="10" Scale="5" />
+          <Property Name="Domain4" Type="decimal" Precision="10" Scale="5" />
+          <Property Name="Domain5" Type="decimal" Precision="10" Scale="5" />
+          <Property Name="Domain6" Type="decimal" Precision="10" Scale="5" />
+          <Property Name="Domain7" Type="decimal" Precision="10" Scale="5" />
+          <Property Name="Domain8" Type="decimal" Precision="10" Scale="5" />
+          <Property Name="Domain9" Type="decimal" Precision="10" Scale="5" />
+          <Property Name="Domain10" Type="decimal" Precision="10" Scale="5" />
+          <Property Name="Deleted" Type="bit" Nullable="false" />
+          <Property Name="DateCreated" Type="datetime2" Precision="7" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Section">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Name" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="ResourceId" Type="bigint" />
+          <Property Name="Deleted" Type="bit" Nullable="false" />
+          <Property Name="DateCreated" Type="datetime2" Precision="7" Nullable="false" />
+        </EntityType>
+        <EntityType Name="User">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Guid" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="UserName" Type="nvarchar" MaxLength="128" Nullable="false" />
+          <Property Name="Password" Type="nvarchar" MaxLength="128" Nullable="false" />
+          <Property Name="Email" Type="nvarchar" MaxLength="128" Nullable="false" />
+          <Property Name="FirstName" Type="nvarchar" MaxLength="128" />
+          <Property Name="LastName" Type="nvarchar" MaxLength="128" />
+          <Property Name="CompanyName" Type="nvarchar" MaxLength="128" />
+          <Property Name="PartnerId" Type="int" />
+          <Property Name="IsPartner" Type="bigint" Nullable="false" />
+          <Property Name="StatusId" Type="int" Nullable="false" />
+          <Property Name="Deleted" Type="bit" Nullable="false" />
+          <Property Name="StartDate" Type="datetime2" Precision="7" Nullable="false" />
+          <Property Name="EndDate" Type="datetime2" Precision="7" />
+          <Property Name="LastLoginDate" Type="datetime2" Precision="7" />
+          <Property Name="DateCreated" Type="datetime2" Precision="7" Nullable="false" />
+          <Property Name="DateUpdated" Type="datetime2" Precision="7" Nullable="false" />
+        </EntityType>
+        <EntityType Name="UserRole">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="UserId" Type="bigint" Nullable="false" />
+          <Property Name="RoleId" Type="int" Nullable="false" />
+          <Property Name="Disabled" Type="bit" Nullable="false" />
+        </EntityType>
+        <EntityType Name="UserStatus">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Name" Type="nvarchar" MaxLength="256" Nullable="false" />
+        </EntityType>
+        <Association Name="FK_AnswerChoice_QuestionItemId">
+          <End Role="QuestionItem" Type="Self.QuestionItem" Multiplicity="0..1" />
+          <End Role="AnswerChoice" Type="Self.AnswerChoice" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="QuestionItem">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="AnswerChoice">
+              <PropertyRef Name="QuestionItemId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_AssessmentAnswerChoice_AnswerChoiceId">
+          <End Role="AnswerChoice" Type="Self.AnswerChoice" Multiplicity="1" />
+          <End Role="AssessmentAnswerChoice" Type="Self.AssessmentAnswerChoice" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="AnswerChoice">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="AssessmentAnswerChoice">
+              <PropertyRef Name="AnswerChoiceId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_AssessmentAnswerChoice_AnswerTypeId">
+          <End Role="AnswerType" Type="Self.AnswerType" Multiplicity="1" />
+          <End Role="AssessmentAnswerChoice" Type="Self.AssessmentAnswerChoice" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="AnswerType">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="AssessmentAnswerChoice">
+              <PropertyRef Name="AnswerTypeId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_AssessmentAnswerChoice_AssessmentQuestionId">
+          <End Role="AssessmentQuestion" Type="Self.AssessmentQuestion" Multiplicity="1" />
+          <End Role="AssessmentAnswerChoice" Type="Self.AssessmentAnswerChoice" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="AssessmentQuestion">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="AssessmentAnswerChoice">
+              <PropertyRef Name="AssessmentQuestionId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_AssessmentAnswerChoice_QuestionItemId">
+          <End Role="QuestionItem" Type="Self.QuestionItem" Multiplicity="1" />
+          <End Role="AssessmentAnswerChoice" Type="Self.AssessmentAnswerChoice" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="QuestionItem">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="AssessmentAnswerChoice">
+              <PropertyRef Name="QuestionItemId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_AssessmentAnswerChoice_TextId">
+          <End Role="Resource" Type="Self.Resource" Multiplicity="0..1" />
+          <End Role="AssessmentAnswerChoice" Type="Self.AssessmentAnswerChoice" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Resource">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="AssessmentAnswerChoice">
+              <PropertyRef Name="TextId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_AssessmentQuestion_AltTextId">
+          <End Role="Resource" Type="Self.Resource" Multiplicity="0..1" />
+          <End Role="AssessmentQuestion" Type="Self.AssessmentQuestion" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Resource">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="AssessmentQuestion">
+              <PropertyRef Name="AltTextId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_AssessmentQuestion_AssessmentId">
+          <End Role="Assessment" Type="Self.Assessment" Multiplicity="1" />
+          <End Role="AssessmentQuestion" Type="Self.AssessmentQuestion" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Assessment">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="AssessmentQuestion">
+              <PropertyRef Name="AssessmentId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_AssessmentQuestion_TextId">
+          <End Role="Resource" Type="Self.Resource" Multiplicity="0..1" />
+          <End Role="AssessmentQuestion" Type="Self.AssessmentQuestion" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Resource">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="AssessmentQuestion">
+              <PropertyRef Name="TextId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_AssessmentQuestion_ValidationTextId">
+          <End Role="Resource" Type="Self.Resource" Multiplicity="0..1" />
+          <End Role="AssessmentQuestion" Type="Self.AssessmentQuestion" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Resource">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="AssessmentQuestion">
+              <PropertyRef Name="ValidationTextId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Partner_PartnerDetails">
+          <End Role="PartnerDetails" Type="Self.PartnerDetails" Multiplicity="0..1" />
+          <End Role="Partner" Type="Self.Partner" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="PartnerDetails">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Partner">
+              <PropertyRef Name="PartnerDetailsId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Question_AnswerType">
+          <End Role="AnswerType" Type="Self.AnswerType" Multiplicity="1" />
+          <End Role="Question" Type="Self.Question" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="AnswerType">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Question">
+              <PropertyRef Name="AnswerTypeId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Question_ResourceId">
+          <End Role="Resource" Type="Self.Resource" Multiplicity="0..1" />
+          <End Role="Question" Type="Self.Question" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Resource">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Question">
+              <PropertyRef Name="ResourceId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_QuestionItem_AnswerType">
+          <End Role="AnswerType" Type="Self.AnswerType" Multiplicity="1" />
+          <End Role="QuestionItem" Type="Self.QuestionItem" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="AnswerType">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="QuestionItem">
+              <PropertyRef Name="AnswerTypeId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_QuestionItem_QuestionId">
+          <End Role="Question" Type="Self.Question" Multiplicity="0..1" />
+          <End Role="QuestionItem" Type="Self.QuestionItem" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Question">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="QuestionItem">
+              <PropertyRef Name="QuestionId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_QuestionItem_ResourceId">
+          <End Role="Resource" Type="Self.Resource" Multiplicity="0..1" />
+          <End Role="QuestionItem" Type="Self.QuestionItem" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Resource">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="QuestionItem">
+              <PropertyRef Name="ResourceId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Resource_ResourceTypeId">
+          <End Role="ResourceType" Type="Self.ResourceType" Multiplicity="0..1" />
+          <End Role="Resource" Type="Self.Resource" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ResourceType">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Resource">
+              <PropertyRef Name="ResourceTypeId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ResourceValue_ResourceId">
+          <End Role="Resource" Type="Self.Resource" Multiplicity="1" />
+          <End Role="ResourceValue" Type="Self.ResourceValue" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Resource">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="ResourceValue">
+              <PropertyRef Name="ResourceId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Section_ResourceId">
+          <End Role="Resource" Type="Self.Resource" Multiplicity="0..1" />
+          <End Role="Section" Type="Self.Section" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Resource">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Section">
+              <PropertyRef Name="ResourceId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_SurveyQuestion_SectionId">
+          <End Role="Section" Type="Self.Section" Multiplicity="0..1" />
+          <End Role="AssessmentQuestion" Type="Self.AssessmentQuestion" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Section">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="AssessmentQuestion">
+              <PropertyRef Name="SectionId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_User_Partner">
+          <End Role="Partner" Type="Self.Partner" Multiplicity="0..1" />
+          <End Role="User" Type="Self.User" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Partner">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="User">
+              <PropertyRef Name="PartnerId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_User_Status">
+          <End Role="UserStatus" Type="Self.UserStatus" Multiplicity="1" />
+          <End Role="User" Type="Self.User" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="UserStatus">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="User">
+              <PropertyRef Name="StatusId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_UserRole_Role">
+          <End Role="Role" Type="Self.Role" Multiplicity="1" />
+          <End Role="UserRole" Type="Self.UserRole" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Role">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="UserRole">
+              <PropertyRef Name="RoleId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_UserRole_User">
+          <End Role="User" Type="Self.User" Multiplicity="1" />
+          <End Role="UserRole" Type="Self.UserRole" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="User">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="UserRole">
+              <PropertyRef Name="UserId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Function Name="usp_GetHash" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="Cleartext" Type="nvarchar" Mode="In" />
+        </Function>
+        <EntityContainer Name="AssessmentModelStoreContainer">
+          <EntitySet Name="Answer" EntityType="Self.Answer" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="AnswerChoice" EntityType="Self.AnswerChoice" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="AnswerType" EntityType="Self.AnswerType" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Assessment" EntityType="Self.Assessment" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="AssessmentAnswerChoice" EntityType="Self.AssessmentAnswerChoice" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="AssessmentQuestion" EntityType="Self.AssessmentQuestion" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Campaign" EntityType="Self.Campaign" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Partner" EntityType="Self.Partner" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="PartnerDetails" EntityType="Self.PartnerDetails" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Question" EntityType="Self.Question" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="QuestionItem" EntityType="Self.QuestionItem" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Resource" EntityType="Self.Resource" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="ResourceType" EntityType="Self.ResourceType" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="ResourceValue" EntityType="Self.ResourceValue" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Response" EntityType="Self.Response" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Role" EntityType="Self.Role" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Score" EntityType="Self.Score" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Section" EntityType="Self.Section" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="User" EntityType="Self.User" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="UserRole" EntityType="Self.UserRole" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="UserStatus" EntityType="Self.UserStatus" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK_AnswerChoice_QuestionItemId" Association="Self.FK_AnswerChoice_QuestionItemId">
+            <End Role="QuestionItem" EntitySet="QuestionItem" />
+            <End Role="AnswerChoice" EntitySet="AnswerChoice" />
+          </AssociationSet>
+          <AssociationSet Name="FK_AssessmentAnswerChoice_AnswerChoiceId" Association="Self.FK_AssessmentAnswerChoice_AnswerChoiceId">
+            <End Role="AnswerChoice" EntitySet="AnswerChoice" />
+            <End Role="AssessmentAnswerChoice" EntitySet="AssessmentAnswerChoice" />
+          </AssociationSet>
+          <AssociationSet Name="FK_AssessmentAnswerChoice_AnswerTypeId" Association="Self.FK_AssessmentAnswerChoice_AnswerTypeId">
+            <End Role="AnswerType" EntitySet="AnswerType" />
+            <End Role="AssessmentAnswerChoice" EntitySet="AssessmentAnswerChoice" />
+          </AssociationSet>
+          <AssociationSet Name="FK_AssessmentAnswerChoice_AssessmentQuestionId" Association="Self.FK_AssessmentAnswerChoice_AssessmentQuestionId">
+            <End Role="AssessmentQuestion" EntitySet="AssessmentQuestion" />
+            <End Role="AssessmentAnswerChoice" EntitySet="AssessmentAnswerChoice" />
+          </AssociationSet>
+          <AssociationSet Name="FK_AssessmentAnswerChoice_QuestionItemId" Association="Self.FK_AssessmentAnswerChoice_QuestionItemId">
+            <End Role="QuestionItem" EntitySet="QuestionItem" />
+            <End Role="AssessmentAnswerChoice" EntitySet="AssessmentAnswerChoice" />
+          </AssociationSet>
+          <AssociationSet Name="FK_AssessmentAnswerChoice_TextId" Association="Self.FK_AssessmentAnswerChoice_TextId">
+            <End Role="Resource" EntitySet="Resource" />
+            <End Role="AssessmentAnswerChoice" EntitySet="AssessmentAnswerChoice" />
+          </AssociationSet>
+          <AssociationSet Name="FK_AssessmentQuestion_AltTextId" Association="Self.FK_AssessmentQuestion_AltTextId">
+            <End Role="Resource" EntitySet="Resource" />
+            <End Role="AssessmentQuestion" EntitySet="AssessmentQuestion" />
+          </AssociationSet>
+          <AssociationSet Name="FK_AssessmentQuestion_AssessmentId" Association="Self.FK_AssessmentQuestion_AssessmentId">
+            <End Role="Assessment" EntitySet="Assessment" />
+            <End Role="AssessmentQuestion" EntitySet="AssessmentQuestion" />
+          </AssociationSet>
+          <AssociationSet Name="FK_AssessmentQuestion_TextId" Association="Self.FK_AssessmentQuestion_TextId">
+            <End Role="Resource" EntitySet="Resource" />
+            <End Role="AssessmentQuestion" EntitySet="AssessmentQuestion" />
+          </AssociationSet>
+          <AssociationSet Name="FK_AssessmentQuestion_ValidationTextId" Association="Self.FK_AssessmentQuestion_ValidationTextId">
+            <End Role="Resource" EntitySet="Resource" />
+            <End Role="AssessmentQuestion" EntitySet="AssessmentQuestion" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Partner_PartnerDetails" Association="Self.FK_Partner_PartnerDetails">
+            <End Role="PartnerDetails" EntitySet="PartnerDetails" />
+            <End Role="Partner" EntitySet="Partner" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Question_AnswerType" Association="Self.FK_Question_AnswerType">
+            <End Role="AnswerType" EntitySet="AnswerType" />
+            <End Role="Question" EntitySet="Question" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Question_ResourceId" Association="Self.FK_Question_ResourceId">
+            <End Role="Resource" EntitySet="Resource" />
+            <End Role="Question" EntitySet="Question" />
+          </AssociationSet>
+          <AssociationSet Name="FK_QuestionItem_AnswerType" Association="Self.FK_QuestionItem_AnswerType">
+            <End Role="AnswerType" EntitySet="AnswerType" />
+            <End Role="QuestionItem" EntitySet="QuestionItem" />
+          </AssociationSet>
+          <AssociationSet Name="FK_QuestionItem_QuestionId" Association="Self.FK_QuestionItem_QuestionId">
+            <End Role="Question" EntitySet="Question" />
+            <End Role="QuestionItem" EntitySet="QuestionItem" />
+          </AssociationSet>
+          <AssociationSet Name="FK_QuestionItem_ResourceId" Association="Self.FK_QuestionItem_ResourceId">
+            <End Role="Resource" EntitySet="Resource" />
+            <End Role="QuestionItem" EntitySet="QuestionItem" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Resource_ResourceTypeId" Association="Self.FK_Resource_ResourceTypeId">
+            <End Role="ResourceType" EntitySet="ResourceType" />
+            <End Role="Resource" EntitySet="Resource" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ResourceValue_ResourceId" Association="Self.FK_ResourceValue_ResourceId">
+            <End Role="Resource" EntitySet="Resource" />
+            <End Role="ResourceValue" EntitySet="ResourceValue" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Section_ResourceId" Association="Self.FK_Section_ResourceId">
+            <End Role="Resource" EntitySet="Resource" />
+            <End Role="Section" EntitySet="Section" />
+          </AssociationSet>
+          <AssociationSet Name="FK_SurveyQuestion_SectionId" Association="Self.FK_SurveyQuestion_SectionId">
+            <End Role="Section" EntitySet="Section" />
+            <End Role="AssessmentQuestion" EntitySet="AssessmentQuestion" />
+          </AssociationSet>
+          <AssociationSet Name="FK_User_Partner" Association="Self.FK_User_Partner">
+            <End Role="Partner" EntitySet="Partner" />
+            <End Role="User" EntitySet="User" />
+          </AssociationSet>
+          <AssociationSet Name="FK_User_Status" Association="Self.FK_User_Status">
+            <End Role="UserStatus" EntitySet="UserStatus" />
+            <End Role="User" EntitySet="User" />
+          </AssociationSet>
+          <AssociationSet Name="FK_UserRole_Role" Association="Self.FK_UserRole_Role">
+            <End Role="Role" EntitySet="Role" />
+            <End Role="UserRole" EntitySet="UserRole" />
+          </AssociationSet>
+          <AssociationSet Name="FK_UserRole_User" Association="Self.FK_UserRole_User">
+            <End Role="User" EntitySet="User" />
+            <End Role="UserRole" EntitySet="UserRole" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema></edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="AssessmentModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="Answer">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="AssessmentQuestionId" Type="Int64" Nullable="false" />
+          <Property Name="QuestionItemId" Type="Int64" Nullable="false" />
+          <Property Name="AnswerChoiceId" Type="Int64" Nullable="false" />
+          <Property Name="Value" Type="String" MaxLength="2000" FixedLength="false" Unicode="true" />
+          <Property Name="ResponseId" Type="Int64" Nullable="false" />
+          <Property Name="Deleted" Type="Boolean" Nullable="false" />
+          <Property Name="DateCreated" Type="DateTime" Nullable="false" Precision="7" />
+        </EntityType>
+        <EntityType Name="AnswerChoice">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="QuestionItemId" Type="Int64" />
+          <Property Name="Name" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+          <Property Name="Deleted" Type="Boolean" Nullable="false" />
+          <Property Name="DateCreated" Type="DateTime" Nullable="false" Precision="7" />
+          <NavigationProperty Name="QuestionItem" Relationship="Self.FK_AnswerChoice_QuestionItemId" FromRole="AnswerChoice" ToRole="QuestionItem" />
+          <NavigationProperty Name="AssessmentAnswerChoice" Relationship="Self.FK_AssessmentAnswerChoice_AnswerChoiceId" FromRole="AnswerChoice" ToRole="AssessmentAnswerChoice" />
+        </EntityType>
+        <EntityType Name="AnswerType">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="MultipleChioce" Type="Boolean" Nullable="false" />
+          <NavigationProperty Name="AssessmentAnswerChoice" Relationship="Self.FK_AssessmentAnswerChoice_AnswerTypeId" FromRole="AnswerType" ToRole="AssessmentAnswerChoice" />
+          <NavigationProperty Name="Question" Relationship="Self.FK_Question_AnswerType" FromRole="AnswerType" ToRole="Question" />
+          <NavigationProperty Name="QuestionItem" Relationship="Self.FK_QuestionItem_AnswerType" FromRole="AnswerType" ToRole="QuestionItem" />
+        </EntityType>
+        <EntityType Name="Assessment">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Description" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+          <Property Name="Disabled" Type="Boolean" Nullable="false" />
+          <Property Name="DateCreated" Type="DateTime" Nullable="false" Precision="7" />
+          <NavigationProperty Name="AssessmentQuestion" Relationship="Self.FK_AssessmentQuestion_AssessmentId" FromRole="Assessment" ToRole="AssessmentQuestion" />
+        </EntityType>
+        <EntityType Name="AssessmentAnswerChoice">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="AssessmentQuestionId" Type="Int64" Nullable="false" />
+          <Property Name="Name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="OrderNo" Type="Int32" Nullable="false" />
+          <Property Name="TextId" Type="Int64" />
+          <Property Name="AnswerTypeId" Type="Int32" Nullable="false" />
+          <Property Name="QuestionItemId" Type="Int64" Nullable="false" />
+          <Property Name="AnswerChoiceId" Type="Int64" Nullable="false" />
+          <Property Name="AltQuestionItemId" Type="Int64" />
+          <Property Name="AlternativeAnswer" Type="Boolean" Nullable="false" />
+          <Property Name="Encrypted" Type="Boolean" Nullable="false" />
+          <Property Name="Score" Type="Decimal" Precision="10" Scale="5" />
+          <Property Name="DateCreated" Type="DateTime" Nullable="false" Precision="7" />
+          <Property Name="Deleted" Type="Boolean" Nullable="false" />
+          <NavigationProperty Name="AnswerChoice" Relationship="Self.FK_AssessmentAnswerChoice_AnswerChoiceId" FromRole="AssessmentAnswerChoice" ToRole="AnswerChoice" />
+          <NavigationProperty Name="AnswerType" Relationship="Self.FK_AssessmentAnswerChoice_AnswerTypeId" FromRole="AssessmentAnswerChoice" ToRole="AnswerType" />
+          <NavigationProperty Name="AssessmentQuestion" Relationship="Self.FK_AssessmentAnswerChoice_AssessmentQuestionId" FromRole="AssessmentAnswerChoice" ToRole="AssessmentQuestion" />
+          <NavigationProperty Name="QuestionItem" Relationship="Self.FK_AssessmentAnswerChoice_QuestionItemId" FromRole="AssessmentAnswerChoice" ToRole="QuestionItem" />
+          <NavigationProperty Name="Resource" Relationship="Self.FK_AssessmentAnswerChoice_TextId" FromRole="AssessmentAnswerChoice" ToRole="Resource" />
+        </EntityType>
+        <EntityType Name="AssessmentQuestion">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="AssessmentId" Type="Int64" Nullable="false" />
+          <Property Name="Name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Description" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+          <Property Name="OrderNo" Type="Int32" Nullable="false" />
+          <Property Name="TextId" Type="Int64" />
+          <Property Name="AltTextId" Type="Int64" />
+          <Property Name="ValidationTextId" Type="Int64" />
+          <Property Name="AnswerTypeId" Type="Int32" Nullable="false" />
+          <Property Name="SectionId" Type="Int64" />
+          <Property Name="PageNo" Type="Int32" />
+          <Property Name="QuestionGroup" Type="Boolean" Nullable="false" />
+          <Property Name="QuestionGroupId" Type="Int64" />
+          <Property Name="Deleted" Type="Boolean" Nullable="false" />
+          <Property Name="DateCreated" Type="DateTime" Nullable="false" Precision="7" />
+          <NavigationProperty Name="Assessment" Relationship="Self.FK_AssessmentQuestion_AssessmentId" FromRole="AssessmentQuestion" ToRole="Assessment" />
+          <NavigationProperty Name="AssessmentAnswerChoice" Relationship="Self.FK_AssessmentAnswerChoice_AssessmentQuestionId" FromRole="AssessmentQuestion" ToRole="AssessmentAnswerChoice" />
+          <NavigationProperty Name="Resource" Relationship="Self.FK_AssessmentQuestion_AltTextId" FromRole="AssessmentQuestion" ToRole="Resource" />
+          <NavigationProperty Name="Resource1" Relationship="Self.FK_AssessmentQuestion_TextId" FromRole="AssessmentQuestion" ToRole="Resource" />
+          <NavigationProperty Name="Resource2" Relationship="Self.FK_AssessmentQuestion_ValidationTextId" FromRole="AssessmentQuestion" ToRole="Resource" />
+          <NavigationProperty Name="Section" Relationship="Self.FK_SurveyQuestion_SectionId" FromRole="AssessmentQuestion" ToRole="Section" />
+          <Property Name="Optional" Type="Boolean" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Campaign">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Guid" Type="Guid" Nullable="false" />
+          <Property Name="Name" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Description" Type="String" MaxLength="256" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Disabled" Type="Boolean" Nullable="false" />
+          <Property Name="StartDate" Type="DateTime" Precision="7" />
+          <Property Name="EndDate" Type="DateTime" Precision="7" />
+          <Property Name="DateCreated" Type="DateTime" Nullable="false" Precision="7" />
+        </EntityType>
+        <EntityType Name="Partner">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="PartnerDetailsId" Type="Int32" />
+          <Property Name="Disabled" Type="Boolean" Nullable="false" />
+          <Property Name="Deleted" Type="Boolean" Nullable="false" />
+          <Property Name="DateCreated" Type="DateTime" Nullable="false" Precision="7" />
+          <Property Name="DateUpdated" Type="DateTime" Nullable="false" Precision="7" />
+          <NavigationProperty Name="PartnerDetails" Relationship="Self.FK_Partner_PartnerDetails" FromRole="Partner" ToRole="PartnerDetails" />
+          <NavigationProperty Name="User" Relationship="Self.FK_User_Partner" FromRole="Partner" ToRole="User" />
+        </EntityType>
+        <EntityType Name="PartnerDetails">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Email" Type="String" MaxLength="256" FixedLength="false" Unicode="true" />
+          <Property Name="CCEmail" Type="String" MaxLength="256" FixedLength="false" Unicode="true" />
+          <Property Name="BCCEmail" Type="String" MaxLength="256" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="Partner" Relationship="Self.FK_Partner_PartnerDetails" FromRole="PartnerDetails" ToRole="Partner" />
+        </EntityType>
+        <EntityType Name="Question">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="ResourceId" Type="Int64" />
+          <Property Name="AnswerTypeId" Type="Int32" Nullable="false" />
+          <Property Name="Name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Description" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+          <Property Name="Deleted" Type="Boolean" Nullable="false" />
+          <Property Name="DateCreated" Type="DateTime" Nullable="false" Precision="7" />
+          <NavigationProperty Name="AnswerType" Relationship="Self.FK_Question_AnswerType" FromRole="Question" ToRole="AnswerType" />
+          <NavigationProperty Name="Resource" Relationship="Self.FK_Question_ResourceId" FromRole="Question" ToRole="Resource" />
+          <NavigationProperty Name="QuestionItem" Relationship="Self.FK_QuestionItem_QuestionId" FromRole="Question" ToRole="QuestionItem" />
+        </EntityType>
+        <EntityType Name="QuestionItem">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="QuestionId" Type="Int64" />
+          <Property Name="ResourceId" Type="Int64" />
+          <Property Name="AnswerTypeId" Type="Int32" Nullable="false" />
+          <Property Name="Name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Description" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+          <Property Name="Deleted" Type="Boolean" Nullable="false" />
+          <Property Name="DateCreated" Type="DateTime" Nullable="false" Precision="7" />
+          <NavigationProperty Name="AnswerChoice" Relationship="Self.FK_AnswerChoice_QuestionItemId" FromRole="QuestionItem" ToRole="AnswerChoice" />
+          <NavigationProperty Name="AnswerType" Relationship="Self.FK_QuestionItem_AnswerType" FromRole="QuestionItem" ToRole="AnswerType" />
+          <NavigationProperty Name="AssessmentAnswerChoice" Relationship="Self.FK_AssessmentAnswerChoice_QuestionItemId" FromRole="QuestionItem" ToRole="AssessmentAnswerChoice" />
+          <NavigationProperty Name="Question" Relationship="Self.FK_QuestionItem_QuestionId" FromRole="QuestionItem" ToRole="Question" />
+          <NavigationProperty Name="Resource" Relationship="Self.FK_QuestionItem_ResourceId" FromRole="QuestionItem" ToRole="Resource" />
+        </EntityType>
+        <EntityType Name="Resource">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="String" MaxLength="200" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="DefaultValue" Type="String" MaxLength="4000" FixedLength="false" Unicode="true" />
+          <Property Name="ResourceTypeId" Type="Int64" />
+          <Property Name="Tag" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="Deleted" Type="Boolean" Nullable="false" />
+          <Property Name="DateCreated" Type="DateTime" Nullable="false" Precision="7" />
+          <Property Name="DateUpdated" Type="DateTime" Nullable="false" Precision="7" />
+          <NavigationProperty Name="AssessmentAnswerChoice" Relationship="Self.FK_AssessmentAnswerChoice_TextId" FromRole="Resource" ToRole="AssessmentAnswerChoice" />
+          <NavigationProperty Name="AssessmentQuestion" Relationship="Self.FK_AssessmentQuestion_AltTextId" FromRole="Resource" ToRole="AssessmentQuestion" />
+          <NavigationProperty Name="AssessmentQuestion1" Relationship="Self.FK_AssessmentQuestion_TextId" FromRole="Resource" ToRole="AssessmentQuestion" />
+          <NavigationProperty Name="AssessmentQuestion2" Relationship="Self.FK_AssessmentQuestion_ValidationTextId" FromRole="Resource" ToRole="AssessmentQuestion" />
+          <NavigationProperty Name="Question" Relationship="Self.FK_Question_ResourceId" FromRole="Resource" ToRole="Question" />
+          <NavigationProperty Name="QuestionItem" Relationship="Self.FK_QuestionItem_ResourceId" FromRole="Resource" ToRole="QuestionItem" />
+          <NavigationProperty Name="ResourceType" Relationship="Self.FK_Resource_ResourceTypeId" FromRole="Resource" ToRole="ResourceType" />
+          <NavigationProperty Name="ResourceValue" Relationship="Self.FK_ResourceValue_ResourceId" FromRole="Resource" ToRole="ResourceValue" />
+          <NavigationProperty Name="Section" Relationship="Self.FK_Section_ResourceId" FromRole="Resource" ToRole="Section" />
+        </EntityType>
+        <EntityType Name="ResourceType">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Description" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="Deleted" Type="Boolean" Nullable="false" />
+          <Property Name="DateCreated" Type="DateTime" Nullable="false" Precision="7" />
+          <Property Name="DateUpdated" Type="DateTime" Nullable="false" Precision="7" />
+          <NavigationProperty Name="Resource" Relationship="Self.FK_Resource_ResourceTypeId" FromRole="ResourceType" ToRole="Resource" />
+        </EntityType>
+        <EntityType Name="ResourceValue">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Value" Type="String" MaxLength="4000" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="CultureName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="ResourceId" Type="Int64" Nullable="false" />
+          <Property Name="Deleted" Type="Boolean" Nullable="false" />
+          <Property Name="DateCreated" Type="DateTime" Nullable="false" Precision="7" />
+          <Property Name="DateUpdated" Type="DateTime" Nullable="false" Precision="7" />
+          <NavigationProperty Name="Resource" Relationship="Self.FK_ResourceValue_ResourceId" FromRole="ResourceValue" ToRole="Resource" />
+        </EntityType>
+        <EntityType Name="Response">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="ResponseKey" Type="Guid" />
+          <Property Name="UserId" Type="Int64" />
+          <Property Name="PartnerId" Type="Int32" />
+          <Property Name="CampaignId" Type="Int64" />
+          <Property Name="Email" Type="String" MaxLength="128" FixedLength="false" Unicode="true" />
+          <Property Name="CompletedPageNo" Type="Int32" />
+          <Property Name="CompletedQuestionNo" Type="Int32" />
+          <Property Name="Completed" Type="Boolean" Nullable="false" />
+          <Property Name="ReportSent" Type="Boolean" Nullable="false" />
+          <Property Name="Deleted" Type="Boolean" Nullable="false" />
+          <Property Name="DateCreated" Type="DateTime" Nullable="false" Precision="7" />
+          <Property Name="DateUpdated" Type="DateTime" Nullable="false" Precision="7" />
+          <Property Name="DateCompleted" Type="DateTime" Precision="7" />
+          <Property Name="DateReportSent" Type="DateTime" Precision="7" />
+          <Property Name="DateDeleted" Type="DateTime" Precision="7" />
+          <Property Name="AssessmentId" Type="Int64" />
+          <Property Name="Error" Type="Boolean" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Role">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="String" MaxLength="256" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Disabled" Type="Boolean" Nullable="false" />
+          <NavigationProperty Name="UserRole" Relationship="Self.FK_UserRole_Role" FromRole="Role" ToRole="UserRole" />
+        </EntityType>
+        <EntityType Name="Section">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="ResourceId" Type="Int64" />
+          <Property Name="Deleted" Type="Boolean" Nullable="false" />
+          <Property Name="DateCreated" Type="DateTime" Nullable="false" Precision="7" />
+          <NavigationProperty Name="AssessmentQuestion" Relationship="Self.FK_SurveyQuestion_SectionId" FromRole="Section" ToRole="AssessmentQuestion" />
+          <NavigationProperty Name="Resource" Relationship="Self.FK_Section_ResourceId" FromRole="Section" ToRole="Resource" />
+        </EntityType>
+        <EntityType Name="User">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Guid" Type="Guid" Nullable="false" />
+          <Property Name="UserName" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Password" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Email" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="FirstName" Type="String" MaxLength="128" FixedLength="false" Unicode="true" />
+          <Property Name="LastName" Type="String" MaxLength="128" FixedLength="false" Unicode="true" />
+          <Property Name="CompanyName" Type="String" MaxLength="128" FixedLength="false" Unicode="true" />
+          <Property Name="PartnerId" Type="Int32" />
+          <Property Name="IsPartner" Type="Int64" Nullable="false" />
+          <Property Name="StatusId" Type="Int32" Nullable="false" />
+          <Property Name="Deleted" Type="Boolean" Nullable="false" />
+          <Property Name="StartDate" Type="DateTime" Nullable="false" Precision="7" />
+          <Property Name="EndDate" Type="DateTime" Precision="7" />
+          <Property Name="LastLoginDate" Type="DateTime" Precision="7" />
+          <Property Name="DateCreated" Type="DateTime" Nullable="false" Precision="7" />
+          <Property Name="DateUpdated" Type="DateTime" Nullable="false" Precision="7" />
+          <NavigationProperty Name="Partner" Relationship="Self.FK_User_Partner" FromRole="User" ToRole="Partner" />
+          <NavigationProperty Name="UserStatus" Relationship="Self.FK_User_Status" FromRole="User" ToRole="UserStatus" />
+          <NavigationProperty Name="UserRole" Relationship="Self.FK_UserRole_User" FromRole="User" ToRole="UserRole" />
+        </EntityType>
+        <EntityType Name="UserRole">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="UserId" Type="Int64" Nullable="false" />
+          <Property Name="RoleId" Type="Int32" Nullable="false" />
+          <Property Name="Disabled" Type="Boolean" Nullable="false" />
+          <NavigationProperty Name="Role" Relationship="Self.FK_UserRole_Role" FromRole="UserRole" ToRole="Role" />
+          <NavigationProperty Name="User" Relationship="Self.FK_UserRole_User" FromRole="UserRole" ToRole="User" />
+        </EntityType>
+        <EntityType Name="UserStatus">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="String" MaxLength="256" FixedLength="false" Unicode="true" Nullable="false" />
+          <NavigationProperty Name="User" Relationship="Self.FK_User_Status" FromRole="UserStatus" ToRole="User" />
+        </EntityType>
+        <Association Name="FK_AnswerChoice_QuestionItemId">
+          <End Role="QuestionItem" Type="Self.QuestionItem" Multiplicity="0..1" />
+          <End Role="AnswerChoice" Type="Self.AnswerChoice" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="QuestionItem">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="AnswerChoice">
+              <PropertyRef Name="QuestionItemId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_AssessmentAnswerChoice_AnswerChoiceId">
+          <End Role="AnswerChoice" Type="Self.AnswerChoice" Multiplicity="1" />
+          <End Role="AssessmentAnswerChoice" Type="Self.AssessmentAnswerChoice" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="AnswerChoice">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="AssessmentAnswerChoice">
+              <PropertyRef Name="AnswerChoiceId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_AssessmentAnswerChoice_AnswerTypeId">
+          <End Role="AnswerType" Type="Self.AnswerType" Multiplicity="1" />
+          <End Role="AssessmentAnswerChoice" Type="Self.AssessmentAnswerChoice" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="AnswerType">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="AssessmentAnswerChoice">
+              <PropertyRef Name="AnswerTypeId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Question_AnswerType">
+          <End Role="AnswerType" Type="Self.AnswerType" Multiplicity="1" />
+          <End Role="Question" Type="Self.Question" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="AnswerType">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Question">
+              <PropertyRef Name="AnswerTypeId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_QuestionItem_AnswerType">
+          <End Role="AnswerType" Type="Self.AnswerType" Multiplicity="1" />
+          <End Role="QuestionItem" Type="Self.QuestionItem" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="AnswerType">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="QuestionItem">
+              <PropertyRef Name="AnswerTypeId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_AssessmentQuestion_AssessmentId">
+          <End Role="Assessment" Type="Self.Assessment" Multiplicity="1" />
+          <End Role="AssessmentQuestion" Type="Self.AssessmentQuestion" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Assessment">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="AssessmentQuestion">
+              <PropertyRef Name="AssessmentId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_AssessmentAnswerChoice_AssessmentQuestionId">
+          <End Role="AssessmentQuestion" Type="Self.AssessmentQuestion" Multiplicity="1" />
+          <End Role="AssessmentAnswerChoice" Type="Self.AssessmentAnswerChoice" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="AssessmentQuestion">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="AssessmentAnswerChoice">
+              <PropertyRef Name="AssessmentQuestionId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_AssessmentAnswerChoice_QuestionItemId">
+          <End Role="QuestionItem" Type="Self.QuestionItem" Multiplicity="1" />
+          <End Role="AssessmentAnswerChoice" Type="Self.AssessmentAnswerChoice" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="QuestionItem">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="AssessmentAnswerChoice">
+              <PropertyRef Name="QuestionItemId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_AssessmentAnswerChoice_TextId">
+          <End Role="Resource" Type="Self.Resource" Multiplicity="0..1" />
+          <End Role="AssessmentAnswerChoice" Type="Self.AssessmentAnswerChoice" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Resource">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="AssessmentAnswerChoice">
+              <PropertyRef Name="TextId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_AssessmentQuestion_AltTextId">
+          <End Role="Resource" Type="Self.Resource" Multiplicity="0..1" />
+          <End Role="AssessmentQuestion" Type="Self.AssessmentQuestion" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Resource">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="AssessmentQuestion">
+              <PropertyRef Name="AltTextId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_AssessmentQuestion_TextId">
+          <End Role="Resource" Type="Self.Resource" Multiplicity="0..1" />
+          <End Role="AssessmentQuestion" Type="Self.AssessmentQuestion" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Resource">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="AssessmentQuestion">
+              <PropertyRef Name="TextId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_AssessmentQuestion_ValidationTextId">
+          <End Role="Resource" Type="Self.Resource" Multiplicity="0..1" />
+          <End Role="AssessmentQuestion" Type="Self.AssessmentQuestion" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Resource">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="AssessmentQuestion">
+              <PropertyRef Name="ValidationTextId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_SurveyQuestion_SectionId">
+          <End Role="Section" Type="Self.Section" Multiplicity="0..1" />
+          <End Role="AssessmentQuestion" Type="Self.AssessmentQuestion" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Section">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="AssessmentQuestion">
+              <PropertyRef Name="SectionId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Partner_PartnerDetails">
+          <End Role="PartnerDetails" Type="Self.PartnerDetails" Multiplicity="0..1" />
+          <End Role="Partner" Type="Self.Partner" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="PartnerDetails">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Partner">
+              <PropertyRef Name="PartnerDetailsId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_User_Partner">
+          <End Role="Partner" Type="Self.Partner" Multiplicity="0..1" />
+          <End Role="User" Type="Self.User" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Partner">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="User">
+              <PropertyRef Name="PartnerId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Question_ResourceId">
+          <End Role="Resource" Type="Self.Resource" Multiplicity="0..1" />
+          <End Role="Question" Type="Self.Question" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Resource">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Question">
+              <PropertyRef Name="ResourceId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_QuestionItem_QuestionId">
+          <End Role="Question" Type="Self.Question" Multiplicity="0..1" />
+          <End Role="QuestionItem" Type="Self.QuestionItem" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Question">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="QuestionItem">
+              <PropertyRef Name="QuestionId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_QuestionItem_ResourceId">
+          <End Role="Resource" Type="Self.Resource" Multiplicity="0..1" />
+          <End Role="QuestionItem" Type="Self.QuestionItem" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Resource">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="QuestionItem">
+              <PropertyRef Name="ResourceId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Resource_ResourceTypeId">
+          <End Role="ResourceType" Type="Self.ResourceType" Multiplicity="0..1" />
+          <End Role="Resource" Type="Self.Resource" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ResourceType">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Resource">
+              <PropertyRef Name="ResourceTypeId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ResourceValue_ResourceId">
+          <End Role="Resource" Type="Self.Resource" Multiplicity="1" />
+          <End Role="ResourceValue" Type="Self.ResourceValue" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Resource">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="ResourceValue">
+              <PropertyRef Name="ResourceId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Section_ResourceId">
+          <End Role="Resource" Type="Self.Resource" Multiplicity="0..1" />
+          <End Role="Section" Type="Self.Section" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Resource">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Section">
+              <PropertyRef Name="ResourceId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_UserRole_Role">
+          <End Role="Role" Type="Self.Role" Multiplicity="1" />
+          <End Role="UserRole" Type="Self.UserRole" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Role">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="UserRole">
+              <PropertyRef Name="RoleId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_User_Status">
+          <End Role="UserStatus" Type="Self.UserStatus" Multiplicity="1" />
+          <End Role="User" Type="Self.User" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="UserStatus">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="User">
+              <PropertyRef Name="StatusId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_UserRole_User">
+          <End Role="User" Type="Self.User" Multiplicity="1" />
+          <End Role="UserRole" Type="Self.UserRole" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="User">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="UserRole">
+              <PropertyRef Name="UserId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="AssessmentEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="Answer" EntityType="Self.Answer" />
+          <EntitySet Name="AnswerChoice" EntityType="Self.AnswerChoice" />
+          <EntitySet Name="AnswerType" EntityType="Self.AnswerType" />
+          <EntitySet Name="Assessment" EntityType="Self.Assessment" />
+          <EntitySet Name="AssessmentAnswerChoice" EntityType="Self.AssessmentAnswerChoice" />
+          <EntitySet Name="AssessmentQuestion" EntityType="Self.AssessmentQuestion" />
+          <EntitySet Name="Campaign" EntityType="Self.Campaign" />
+          <EntitySet Name="Partner" EntityType="Self.Partner" />
+          <EntitySet Name="PartnerDetails" EntityType="Self.PartnerDetails" />
+          <EntitySet Name="Question" EntityType="Self.Question" />
+          <EntitySet Name="QuestionItem" EntityType="Self.QuestionItem" />
+          <EntitySet Name="Resource" EntityType="Self.Resource" />
+          <EntitySet Name="ResourceType" EntityType="Self.ResourceType" />
+          <EntitySet Name="ResourceValue" EntityType="Self.ResourceValue" />
+          <EntitySet Name="Response" EntityType="Self.Response" />
+          <EntitySet Name="Role" EntityType="Self.Role" />
+          <EntitySet Name="Section" EntityType="Self.Section" />
+          <EntitySet Name="User" EntityType="Self.User" />
+          <EntitySet Name="UserRole" EntityType="Self.UserRole" />
+          <EntitySet Name="UserStatus" EntityType="Self.UserStatus" />
+          <AssociationSet Name="FK_AnswerChoice_QuestionItemId" Association="Self.FK_AnswerChoice_QuestionItemId">
+            <End Role="QuestionItem" EntitySet="QuestionItem" />
+            <End Role="AnswerChoice" EntitySet="AnswerChoice" />
+          </AssociationSet>
+          <AssociationSet Name="FK_AssessmentAnswerChoice_AnswerChoiceId" Association="Self.FK_AssessmentAnswerChoice_AnswerChoiceId">
+            <End Role="AnswerChoice" EntitySet="AnswerChoice" />
+            <End Role="AssessmentAnswerChoice" EntitySet="AssessmentAnswerChoice" />
+          </AssociationSet>
+          <AssociationSet Name="FK_AssessmentAnswerChoice_AnswerTypeId" Association="Self.FK_AssessmentAnswerChoice_AnswerTypeId">
+            <End Role="AnswerType" EntitySet="AnswerType" />
+            <End Role="AssessmentAnswerChoice" EntitySet="AssessmentAnswerChoice" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Question_AnswerType" Association="Self.FK_Question_AnswerType">
+            <End Role="AnswerType" EntitySet="AnswerType" />
+            <End Role="Question" EntitySet="Question" />
+          </AssociationSet>
+          <AssociationSet Name="FK_QuestionItem_AnswerType" Association="Self.FK_QuestionItem_AnswerType">
+            <End Role="AnswerType" EntitySet="AnswerType" />
+            <End Role="QuestionItem" EntitySet="QuestionItem" />
+          </AssociationSet>
+          <AssociationSet Name="FK_AssessmentQuestion_AssessmentId" Association="Self.FK_AssessmentQuestion_AssessmentId">
+            <End Role="Assessment" EntitySet="Assessment" />
+            <End Role="AssessmentQuestion" EntitySet="AssessmentQuestion" />
+          </AssociationSet>
+          <AssociationSet Name="FK_AssessmentAnswerChoice_AssessmentQuestionId" Association="Self.FK_AssessmentAnswerChoice_AssessmentQuestionId">
+            <End Role="AssessmentQuestion" EntitySet="AssessmentQuestion" />
+            <End Role="AssessmentAnswerChoice" EntitySet="AssessmentAnswerChoice" />
+          </AssociationSet>
+          <AssociationSet Name="FK_AssessmentAnswerChoice_QuestionItemId" Association="Self.FK_AssessmentAnswerChoice_QuestionItemId">
+            <End Role="QuestionItem" EntitySet="QuestionItem" />
+            <End Role="AssessmentAnswerChoice" EntitySet="AssessmentAnswerChoice" />
+          </AssociationSet>
+          <AssociationSet Name="FK_AssessmentAnswerChoice_TextId" Association="Self.FK_AssessmentAnswerChoice_TextId">
+            <End Role="Resource" EntitySet="Resource" />
+            <End Role="AssessmentAnswerChoice" EntitySet="AssessmentAnswerChoice" />
+          </AssociationSet>
+          <AssociationSet Name="FK_AssessmentQuestion_AltTextId" Association="Self.FK_AssessmentQuestion_AltTextId">
+            <End Role="Resource" EntitySet="Resource" />
+            <End Role="AssessmentQuestion" EntitySet="AssessmentQuestion" />
+          </AssociationSet>
+          <AssociationSet Name="FK_AssessmentQuestion_TextId" Association="Self.FK_AssessmentQuestion_TextId">
+            <End Role="Resource" EntitySet="Resource" />
+            <End Role="AssessmentQuestion" EntitySet="AssessmentQuestion" />
+          </AssociationSet>
+          <AssociationSet Name="FK_AssessmentQuestion_ValidationTextId" Association="Self.FK_AssessmentQuestion_ValidationTextId">
+            <End Role="Resource" EntitySet="Resource" />
+            <End Role="AssessmentQuestion" EntitySet="AssessmentQuestion" />
+          </AssociationSet>
+          <AssociationSet Name="FK_SurveyQuestion_SectionId" Association="Self.FK_SurveyQuestion_SectionId">
+            <End Role="Section" EntitySet="Section" />
+            <End Role="AssessmentQuestion" EntitySet="AssessmentQuestion" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Partner_PartnerDetails" Association="Self.FK_Partner_PartnerDetails">
+            <End Role="PartnerDetails" EntitySet="PartnerDetails" />
+            <End Role="Partner" EntitySet="Partner" />
+          </AssociationSet>
+          <AssociationSet Name="FK_User_Partner" Association="Self.FK_User_Partner">
+            <End Role="Partner" EntitySet="Partner" />
+            <End Role="User" EntitySet="User" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Question_ResourceId" Association="Self.FK_Question_ResourceId">
+            <End Role="Resource" EntitySet="Resource" />
+            <End Role="Question" EntitySet="Question" />
+          </AssociationSet>
+          <AssociationSet Name="FK_QuestionItem_QuestionId" Association="Self.FK_QuestionItem_QuestionId">
+            <End Role="Question" EntitySet="Question" />
+            <End Role="QuestionItem" EntitySet="QuestionItem" />
+          </AssociationSet>
+          <AssociationSet Name="FK_QuestionItem_ResourceId" Association="Self.FK_QuestionItem_ResourceId">
+            <End Role="Resource" EntitySet="Resource" />
+            <End Role="QuestionItem" EntitySet="QuestionItem" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Resource_ResourceTypeId" Association="Self.FK_Resource_ResourceTypeId">
+            <End Role="ResourceType" EntitySet="ResourceType" />
+            <End Role="Resource" EntitySet="Resource" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ResourceValue_ResourceId" Association="Self.FK_ResourceValue_ResourceId">
+            <End Role="Resource" EntitySet="Resource" />
+            <End Role="ResourceValue" EntitySet="ResourceValue" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Section_ResourceId" Association="Self.FK_Section_ResourceId">
+            <End Role="Resource" EntitySet="Resource" />
+            <End Role="Section" EntitySet="Section" />
+          </AssociationSet>
+          <AssociationSet Name="FK_UserRole_Role" Association="Self.FK_UserRole_Role">
+            <End Role="Role" EntitySet="Role" />
+            <End Role="UserRole" EntitySet="UserRole" />
+          </AssociationSet>
+          <AssociationSet Name="FK_User_Status" Association="Self.FK_User_Status">
+            <End Role="UserStatus" EntitySet="UserStatus" />
+            <End Role="User" EntitySet="User" />
+          </AssociationSet>
+          <AssociationSet Name="FK_UserRole_User" Association="Self.FK_UserRole_User">
+            <End Role="User" EntitySet="User" />
+            <End Role="UserRole" EntitySet="UserRole" />
+          </AssociationSet>
+          <FunctionImport Name="usp_GetHash" ReturnType="Collection(String)">
+          <Parameter Name="Cleartext" Mode="In" Type="String" />
+          </FunctionImport>
+          <EntitySet Name="Score" EntityType="AssessmentModel.Score" />
+        </EntityContainer>
+        <EntityType Name="Score">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="ResponseId" Type="Int64" Nullable="false" />
+          <Property Name="Overall" Type="Decimal" Nullable="false" Precision="10" Scale="5" />
+          <Property Name="Domain1" Type="Decimal" Precision="10" Scale="5" />
+          <Property Name="Domain2" Type="Decimal" Precision="10" Scale="5" />
+          <Property Name="Domain3" Type="Decimal" Precision="10" Scale="5" />
+          <Property Name="Domain4" Type="Decimal" Precision="10" Scale="5" />
+          <Property Name="Domain5" Type="Decimal" Precision="10" Scale="5" />
+          <Property Name="Domain6" Type="Decimal" Precision="10" Scale="5" />
+          <Property Name="Domain7" Type="Decimal" Precision="10" Scale="5" />
+          <Property Name="Domain8" Type="Decimal" Precision="10" Scale="5" />
+          <Property Name="Domain9" Type="Decimal" Precision="10" Scale="5" />
+          <Property Name="Domain10" Type="Decimal" Precision="10" Scale="5" />
+          <Property Name="Deleted" Type="Boolean" Nullable="false" />
+          <Property Name="DateCreated" Type="DateTime" Nullable="false" Precision="7" />
+        </EntityType>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="AssessmentModelStoreContainer" CdmEntityContainer="AssessmentEntities">
+          <EntitySetMapping Name="Answer">
+            <EntityTypeMapping TypeName="AssessmentModel.Answer">
+              <MappingFragment StoreEntitySet="Answer">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="AssessmentQuestionId" ColumnName="AssessmentQuestionId" />
+                <ScalarProperty Name="QuestionItemId" ColumnName="QuestionItemId" />
+                <ScalarProperty Name="AnswerChoiceId" ColumnName="AnswerChoiceId" />
+                <ScalarProperty Name="Value" ColumnName="Value" />
+                <ScalarProperty Name="ResponseId" ColumnName="ResponseId" />
+                <ScalarProperty Name="Deleted" ColumnName="Deleted" />
+                <ScalarProperty Name="DateCreated" ColumnName="DateCreated" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="AnswerChoice">
+            <EntityTypeMapping TypeName="AssessmentModel.AnswerChoice">
+              <MappingFragment StoreEntitySet="AnswerChoice">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="QuestionItemId" ColumnName="QuestionItemId" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Deleted" ColumnName="Deleted" />
+                <ScalarProperty Name="DateCreated" ColumnName="DateCreated" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="AnswerType">
+            <EntityTypeMapping TypeName="AssessmentModel.AnswerType">
+              <MappingFragment StoreEntitySet="AnswerType">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="MultipleChioce" ColumnName="MultipleChioce" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Assessment">
+            <EntityTypeMapping TypeName="AssessmentModel.Assessment">
+              <MappingFragment StoreEntitySet="Assessment">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Description" ColumnName="Description" />
+                <ScalarProperty Name="Disabled" ColumnName="Disabled" />
+                <ScalarProperty Name="DateCreated" ColumnName="DateCreated" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="AssessmentAnswerChoice">
+            <EntityTypeMapping TypeName="AssessmentModel.AssessmentAnswerChoice">
+              <MappingFragment StoreEntitySet="AssessmentAnswerChoice">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="AssessmentQuestionId" ColumnName="AssessmentQuestionId" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="OrderNo" ColumnName="OrderNo" />
+                <ScalarProperty Name="TextId" ColumnName="TextId" />
+                <ScalarProperty Name="AnswerTypeId" ColumnName="AnswerTypeId" />
+                <ScalarProperty Name="QuestionItemId" ColumnName="QuestionItemId" />
+                <ScalarProperty Name="AnswerChoiceId" ColumnName="AnswerChoiceId" />
+                <ScalarProperty Name="AltQuestionItemId" ColumnName="AltQuestionItemId" />
+                <ScalarProperty Name="AlternativeAnswer" ColumnName="AlternativeAnswer" />
+                <ScalarProperty Name="Encrypted" ColumnName="Encrypted" />
+                <ScalarProperty Name="Score" ColumnName="Score" />
+                <ScalarProperty Name="DateCreated" ColumnName="DateCreated" />
+                <ScalarProperty Name="Deleted" ColumnName="Deleted" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="AssessmentQuestion">
+            <EntityTypeMapping TypeName="AssessmentModel.AssessmentQuestion">
+              <MappingFragment StoreEntitySet="AssessmentQuestion">
+                <ScalarProperty Name="Optional" ColumnName="Optional" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="AssessmentId" ColumnName="AssessmentId" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Description" ColumnName="Description" />
+                <ScalarProperty Name="OrderNo" ColumnName="OrderNo" />
+                <ScalarProperty Name="TextId" ColumnName="TextId" />
+                <ScalarProperty Name="AltTextId" ColumnName="AltTextId" />
+                <ScalarProperty Name="ValidationTextId" ColumnName="ValidationTextId" />
+                <ScalarProperty Name="AnswerTypeId" ColumnName="AnswerTypeId" />
+                <ScalarProperty Name="SectionId" ColumnName="SectionId" />
+                <ScalarProperty Name="PageNo" ColumnName="PageNo" />
+                <ScalarProperty Name="QuestionGroup" ColumnName="QuestionGroup" />
+                <ScalarProperty Name="QuestionGroupId" ColumnName="QuestionGroupId" />
+                <ScalarProperty Name="Deleted" ColumnName="Deleted" />
+                <ScalarProperty Name="DateCreated" ColumnName="DateCreated" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Campaign">
+            <EntityTypeMapping TypeName="AssessmentModel.Campaign">
+              <MappingFragment StoreEntitySet="Campaign">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Guid" ColumnName="Guid" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Description" ColumnName="Description" />
+                <ScalarProperty Name="Disabled" ColumnName="Disabled" />
+                <ScalarProperty Name="StartDate" ColumnName="StartDate" />
+                <ScalarProperty Name="EndDate" ColumnName="EndDate" />
+                <ScalarProperty Name="DateCreated" ColumnName="DateCreated" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Partner">
+            <EntityTypeMapping TypeName="AssessmentModel.Partner">
+              <MappingFragment StoreEntitySet="Partner">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="PartnerDetailsId" ColumnName="PartnerDetailsId" />
+                <ScalarProperty Name="Disabled" ColumnName="Disabled" />
+                <ScalarProperty Name="Deleted" ColumnName="Deleted" />
+                <ScalarProperty Name="DateCreated" ColumnName="DateCreated" />
+                <ScalarProperty Name="DateUpdated" ColumnName="DateUpdated" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="PartnerDetails">
+            <EntityTypeMapping TypeName="AssessmentModel.PartnerDetails">
+              <MappingFragment StoreEntitySet="PartnerDetails">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Email" ColumnName="Email" />
+                <ScalarProperty Name="CCEmail" ColumnName="CCEmail" />
+                <ScalarProperty Name="BCCEmail" ColumnName="BCCEmail" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Question">
+            <EntityTypeMapping TypeName="AssessmentModel.Question">
+              <MappingFragment StoreEntitySet="Question">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="ResourceId" ColumnName="ResourceId" />
+                <ScalarProperty Name="AnswerTypeId" ColumnName="AnswerTypeId" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Description" ColumnName="Description" />
+                <ScalarProperty Name="Deleted" ColumnName="Deleted" />
+                <ScalarProperty Name="DateCreated" ColumnName="DateCreated" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="QuestionItem">
+            <EntityTypeMapping TypeName="AssessmentModel.QuestionItem">
+              <MappingFragment StoreEntitySet="QuestionItem">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="QuestionId" ColumnName="QuestionId" />
+                <ScalarProperty Name="ResourceId" ColumnName="ResourceId" />
+                <ScalarProperty Name="AnswerTypeId" ColumnName="AnswerTypeId" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Description" ColumnName="Description" />
+                <ScalarProperty Name="Deleted" ColumnName="Deleted" />
+                <ScalarProperty Name="DateCreated" ColumnName="DateCreated" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Resource">
+            <EntityTypeMapping TypeName="AssessmentModel.Resource">
+              <MappingFragment StoreEntitySet="Resource">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="DefaultValue" ColumnName="DefaultValue" />
+                <ScalarProperty Name="ResourceTypeId" ColumnName="ResourceTypeId" />
+                <ScalarProperty Name="Tag" ColumnName="Tag" />
+                <ScalarProperty Name="Deleted" ColumnName="Deleted" />
+                <ScalarProperty Name="DateCreated" ColumnName="DateCreated" />
+                <ScalarProperty Name="DateUpdated" ColumnName="DateUpdated" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="ResourceType">
+            <EntityTypeMapping TypeName="AssessmentModel.ResourceType">
+              <MappingFragment StoreEntitySet="ResourceType">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Description" ColumnName="Description" />
+                <ScalarProperty Name="Deleted" ColumnName="Deleted" />
+                <ScalarProperty Name="DateCreated" ColumnName="DateCreated" />
+                <ScalarProperty Name="DateUpdated" ColumnName="DateUpdated" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="ResourceValue">
+            <EntityTypeMapping TypeName="AssessmentModel.ResourceValue">
+              <MappingFragment StoreEntitySet="ResourceValue">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Value" ColumnName="Value" />
+                <ScalarProperty Name="CultureName" ColumnName="CultureName" />
+                <ScalarProperty Name="ResourceId" ColumnName="ResourceId" />
+                <ScalarProperty Name="Deleted" ColumnName="Deleted" />
+                <ScalarProperty Name="DateCreated" ColumnName="DateCreated" />
+                <ScalarProperty Name="DateUpdated" ColumnName="DateUpdated" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Response">
+            <EntityTypeMapping TypeName="AssessmentModel.Response">
+              <MappingFragment StoreEntitySet="Response">
+                <ScalarProperty Name="Error" ColumnName="Error" />
+                <ScalarProperty Name="AssessmentId" ColumnName="AssessmentId" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="ResponseKey" ColumnName="ResponseKey" />
+                <ScalarProperty Name="UserId" ColumnName="UserId" />
+                <ScalarProperty Name="PartnerId" ColumnName="PartnerId" />
+                <ScalarProperty Name="CampaignId" ColumnName="CampaignId" />
+                <ScalarProperty Name="Email" ColumnName="Email" />
+                <ScalarProperty Name="CompletedPageNo" ColumnName="CompletedPageNo" />
+                <ScalarProperty Name="CompletedQuestionNo" ColumnName="CompletedQuestionNo" />
+                <ScalarProperty Name="Completed" ColumnName="Completed" />
+                <ScalarProperty Name="ReportSent" ColumnName="ReportSent" />
+                <ScalarProperty Name="Deleted" ColumnName="Deleted" />
+                <ScalarProperty Name="DateCreated" ColumnName="DateCreated" />
+                <ScalarProperty Name="DateUpdated" ColumnName="DateUpdated" />
+                <ScalarProperty Name="DateCompleted" ColumnName="DateCompleted" />
+                <ScalarProperty Name="DateReportSent" ColumnName="DateReportSent" />
+                <ScalarProperty Name="DateDeleted" ColumnName="DateDeleted" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Role">
+            <EntityTypeMapping TypeName="AssessmentModel.Role">
+              <MappingFragment StoreEntitySet="Role">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Disabled" ColumnName="Disabled" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Section">
+            <EntityTypeMapping TypeName="AssessmentModel.Section">
+              <MappingFragment StoreEntitySet="Section">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="ResourceId" ColumnName="ResourceId" />
+                <ScalarProperty Name="Deleted" ColumnName="Deleted" />
+                <ScalarProperty Name="DateCreated" ColumnName="DateCreated" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="User">
+            <EntityTypeMapping TypeName="AssessmentModel.User">
+              <MappingFragment StoreEntitySet="User">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Guid" ColumnName="Guid" />
+                <ScalarProperty Name="UserName" ColumnName="UserName" />
+                <ScalarProperty Name="Password" ColumnName="Password" />
+                <ScalarProperty Name="Email" ColumnName="Email" />
+                <ScalarProperty Name="FirstName" ColumnName="FirstName" />
+                <ScalarProperty Name="LastName" ColumnName="LastName" />
+                <ScalarProperty Name="CompanyName" ColumnName="CompanyName" />
+                <ScalarProperty Name="PartnerId" ColumnName="PartnerId" />
+                <ScalarProperty Name="IsPartner" ColumnName="IsPartner" />
+                <ScalarProperty Name="StatusId" ColumnName="StatusId" />
+                <ScalarProperty Name="Deleted" ColumnName="Deleted" />
+                <ScalarProperty Name="StartDate" ColumnName="StartDate" />
+                <ScalarProperty Name="EndDate" ColumnName="EndDate" />
+                <ScalarProperty Name="LastLoginDate" ColumnName="LastLoginDate" />
+                <ScalarProperty Name="DateCreated" ColumnName="DateCreated" />
+                <ScalarProperty Name="DateUpdated" ColumnName="DateUpdated" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="UserRole">
+            <EntityTypeMapping TypeName="AssessmentModel.UserRole">
+              <MappingFragment StoreEntitySet="UserRole">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="UserId" ColumnName="UserId" />
+                <ScalarProperty Name="RoleId" ColumnName="RoleId" />
+                <ScalarProperty Name="Disabled" ColumnName="Disabled" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="UserStatus">
+            <EntityTypeMapping TypeName="AssessmentModel.UserStatus">
+              <MappingFragment StoreEntitySet="UserStatus">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <FunctionImportMapping FunctionImportName="usp_GetHash" FunctionName="AssessmentModel.Store.usp_GetHash" />
+          <EntitySetMapping Name="Score">
+            <EntityTypeMapping TypeName="AssessmentModel.Score">
+              <MappingFragment StoreEntitySet="Score">
+                <ScalarProperty Name="DateCreated" ColumnName="DateCreated" />
+                <ScalarProperty Name="Deleted" ColumnName="Deleted" />
+                <ScalarProperty Name="Domain10" ColumnName="Domain10" />
+                <ScalarProperty Name="Domain9" ColumnName="Domain9" />
+                <ScalarProperty Name="Domain8" ColumnName="Domain8" />
+                <ScalarProperty Name="Domain7" ColumnName="Domain7" />
+                <ScalarProperty Name="Domain6" ColumnName="Domain6" />
+                <ScalarProperty Name="Domain5" ColumnName="Domain5" />
+                <ScalarProperty Name="Domain4" ColumnName="Domain4" />
+                <ScalarProperty Name="Domain3" ColumnName="Domain3" />
+                <ScalarProperty Name="Domain2" ColumnName="Domain2" />
+                <ScalarProperty Name="Domain1" ColumnName="Domain1" />
+                <ScalarProperty Name="Overall" ColumnName="Overall" />
+                <ScalarProperty Name="ResponseId" ColumnName="ResponseId" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="false" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

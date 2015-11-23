@@ -1,0 +1,98 @@
+/*** Custom CSS for  RICOH ADMIN UI ***/
+/** Devanshi Patel **/ 
+
+.headline {
+	border:none;
+}
+
+.sky-form .note {
+	font-size: 13px;
+	color:#555;
+}
+
+.no-border {
+	border:none;
+}
+
+.margin-15 {
+	margin:15px 0px;
+}
+
+.bg-custom-green {
+	background: #2ecc71;
+}
+
+.bg-custom {
+	padding:25px;
+	font-size: 50px;
+	margin-right: 20px;
+}
+
+.bg-custom-red {
+	background: #e91b23;
+	padding: 25px 30px;
+}
+
+.bg-custom-blue {
+	background: #3498db;
+	padding: 25px 30px;
+}
+
+.bg-red {
+	background: #a10f2b;
+	padding:10px !important;
+	color:#fff !important;
+}
+
+.header-top {
+	margin-right: 10px;
+}
+
+.icon-bg-color {
+	background:#a10f2b;
+	color:#fff !important;
+	border: solid 1px #a10f2b !important;
+	width: 100px;
+    height: 100px;
+    font-size: 34px;
+    line-height: 100px;
+    margin-bottom: 10px;
+}
+
+i.icon-bg-color:hover {
+	background-color:white;
+	color: #a10f2b !important;
+	border: solid 1px #a10f2b !important;
+}
+
+table th {
+	background: #eee;
+}
+
+/** Data Mining Calendar Style **/
+
+.input-tab {
+	border: 1px solid #ccc;
+    padding: 6px;
+    padding-right: 5px;
+    display: inline-block;
+    background: #eee;
+    border-radius: 3px !important;
+}
+
+.calendar-icon {
+	vertical-align: 0% !important;
+}
+
+.date-input {
+	border: none;
+    padding: 3px 0px 0px 8px;
+    width: 160px;
+    background: #eee;
+}
+
+/** Usage Report li style**/
+
+.usage li {
+	padding:5px 0;
+}

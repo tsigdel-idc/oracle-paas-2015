@@ -1,0 +1,126 @@
+﻿@using IDC.LeadCapture.BLL
+@model IDC.LeadCapture.Models.Usage
+@{
+    ViewBag.Title = ViewBag.Title = ResourceCache.Localize("DX LG | Usage Report");
+    Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
+}
+
+<section class="slice bg-white">
+    <div class="wp-section">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="section-title-wr style-3">
+                        <h3 class="section-title left"><span>@ResourceCache.Localize("Usage Report")</span></h3>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-12">
+                    <br />
+                    <h6>@ResourceCache.Localize("usage_report_title")</h6>
+                    <hr>
+                    <canvas id="assessment-monthly" width="800" height="150"></canvas>
+                    <hr>
+                    <br />
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-4">
+                    <h6>@ResourceCache.Localize("Assessments")</h6>
+                    <hr>
+                    <ul class="list-check">
+                        <li><i class="fa fa-caret-right"></i> <strong>@ResourceCache.Localize("Total Assessments:") </strong>@Model.TotalAssessments</li>
+                        <li><i class="fa fa-caret-right"></i> <strong>@ResourceCache.Localize("Completed:") </strong>@Model.CompletedAssessments</li>
+                        <li><i class="fa fa-caret-right"></i> <strong>@ResourceCache.Localize("Incomplete:") </strong>@Model.IncompleteAssessments</li>
+                        <li><i class="fa fa-caret-right"></i> <strong>@ResourceCache.Localize("Not Started:") </strong>@Model.NotStartedAssessments</li>
+                    </ul>
+                </div>
+                <div class="col-md-4">
+                    <h6>@ResourceCache.Localize("Users")</h6>
+                    <hr>
+                    <ul class="list-check">
+                        <li><i class="fa fa-caret-right"></i> <strong>@ResourceCache.Localize("Total Users:") </strong>@Model.TotalUsers</li>
+                        <li><i class="fa fa-caret-right"></i> <strong>@ResourceCache.Localize("Reports Sent:") </strong>@Model.ReportedAssessments</li>
+                    </ul>
+                </div>
+                <div class="col-md-4">
+                    <h6>@ResourceCache.Localize("Lead Sources")</h6>
+                    <hr>
+                    <ul class="list-check">
+                        <li><i class="fa fa-caret-right"></i> <strong>@ResourceCache.Localize("Total Lead Sources:") </strong>@Model.TotalLeadSources</li>
+                        <li><i class="fa fa-caret-right"></i> <strong>@ResourceCache.Localize("Active:") </strong>@Model.ActiveLeadSources</li>
+                        <li><i class="fa fa-caret-right"></i> <strong>@ResourceCache.Localize("Deleted:") </strong>@Model.DisabledLeadSources</li>
+                        <li><i class="fa fa-caret-right"></i> <strong>@ResourceCache.Localize("Used:") </strong>@Model.UsedLeadSources</li>
+                    </ul>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-12">
+                    <hr>
+                    <a href="@Url.Action("Index", "Admin")" class="btn btn-icon btn-base fa-chevron-left" style="min-width:150px;padding-right:40px;"><span>@ResourceCache.Localize("navigation_back_en")</span></a>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+@section scripts {
+
+    @Scripts.Render("~/Scripts/js/Chart.min.js")
+
+<script>
+
+    var data12Months = {
+        labels: ["@Model.Labels[0]", "@Model.Labels[1]", "@Model.Labels[2]", "@Model.Labels[3]", "@Model.Labels[4]", "@Model.Labels[5]", "@Model.Labels[6]", "@Model.Labels[7]", "@Model.Labels[8]", "@Model.Labels[9]", "@Model.Labels[10]", "@Model.Labels[11]"],
+        datasets: [
+        {
+            label: "My First dataset",
+            fillColor: "rgba(52,152,219,0.5)",
+            strokeColor: "rgba(220,220,220,0.8)",
+            highlightFill: "rgba(156,215,14,0.75)",
+            highlightStroke: "rgba(220,220,220,1)",
+            data: [@Model.Data[0], @Model.Data[1], @Model.Data[2], @Model.Data[3], @Model.Data[4], @Model.Data[5], @Model.Data[6], @Model.Data[7], @Model.Data[8], @Model.Data[9], @Model.Data[10], @Model.Data[11]]
+        }]
+    };
+
+    // get line chart canvas
+    var ctx = document.getElementById("assessment-monthly").getContext("2d");
+
+    // draw line chart
+    var myBarChart = new Chart(ctx).Bar(data12Months, {
+        responsive: true,
+        scaleShowGridLines: true,
+        barValueSpacing: 15
+    });
+
+    var dataAssessments = [
+    {
+        value: 8,
+        color: "#F7464A",
+        highlight: "#FF5A5E",
+        label: "Red"
+    },
+    {
+        value: 50,
+        color: "#46BFBD",
+        highlight: "#5AD3D1",
+        label: "Green"
+    },
+    {
+        value: 100,
+        color: "#FDB45C",
+        highlight: "#FFC870",
+        label: "Yellow"
+    }
+    ];
+
+    var ctx1 = document.getElementById("assessments-info").getContext("2d");
+
+    var myDoughnutChart = new Chart(ctx1).Doughnut(dataAssessments, {
+        responsive: true,
+        legendTemplate: "<ul class=\"<%=name.toLowerCase()%>-legend\"><% for (var i=0; i<dataAssessments.length; i++){%><li><span style=\"background-color:<%=dataAssessments[i].strokeColor%>\"></span><%if(dataAssessments[i].label){%><%=dataAssessments[i].label%><%}%></li><%}%></ul>"
+    });
+
+</script>
+}

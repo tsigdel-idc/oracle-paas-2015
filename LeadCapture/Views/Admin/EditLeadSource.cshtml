@@ -1,0 +1,67 @@
+﻿@using IDC.LeadCapture.BLL
+@model IDC.LeadCapture.Models.Admin.Campaign
+@{
+    ViewBag.Title = ResourceCache.Localize("DX LG | Edit Lead Source");
+    Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
+}
+
+<section class="slice bg-white">
+    <div class="wp-section">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="section-title-wr style-3">
+                        <h3 class="section-title left"><span>@ResourceCache.Localize("Edit Lead Source")</span></h3>
+                    </div>
+                    <hr>
+                    <p><font color="red">*</font> @ResourceCache.Localize("required_field_msg")</p>
+                    <hr>
+                    <ul class="list-check">
+                        <li class="h5"><i class="fa fa-qrcode"></i> <strong>@ResourceCache.Localize("Source ID:")</strong> @Model.Id</li>
+                        <li class="h5"><i class="fa fa-share-alt"></i> <strong>@ResourceCache.Localize("Source Link:")</strong> @Model.Link</li>
+                        <li class="h5"><i class="fa fa-tachometer"></i> <strong>@ResourceCache.Localize("Status:")</strong> @ResourceCache.Localize(Model.Status.ToString())</li>
+                    </ul>
+                    <hr>
+                </div>
+            </div>
+            @using (Html.BeginForm(null, null, FormMethod.Post, new { @class = "sky-form", @id = "admin_form" }))
+            {
+                @Html.AntiForgeryToken()
+                @Html.HiddenFor(m => m.Id)
+                @Html.HiddenFor(m => m.Guid)
+                @Html.ValidationSummary(false)
+                <div class="row">
+                    <div class="col-md-6">
+                        <div class="form-body">
+                            <div class="form-group">
+                                <section>
+                                    <label class="label">@ResourceCache.Localize("Source Description") <font color="red">*</font></label>
+                                    <label class="input">
+                                        <i class="icon-append fa fa-tag"></i>
+                                        @(Html.TextBoxFor(x => x.Description, new { @maxlength = "256" }))
+                                    </label>
+                                </section>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-12">
+                        <hr>
+                        <button type="button" class="btn btn-icon btn-base fa-close" onclick="location.href='@Url.Action("ManageLeadSources", "Admin")'" style="min-width:150px;padding-left:40px;">@ResourceCache.Localize("Cancel_en")</button>
+                        &nbsp;&nbsp;
+                        <button type="submit" class="btn btn-base btn-icon btn-icon-right btn-check" style="min-width:150px;padding-right:40px;">@ResourceCache.Localize("OK")</button>
+                    </div>
+                </div>
+            }
+        </div>
+    </div>
+</section>
+
+@section scripts {
+    <script>
+        $(function () {
+            $("#Description").rules("add", { required: true, messages: { required: $("#Validation").attr('descriptionMsg') } });
+        });
+    </script>
+}

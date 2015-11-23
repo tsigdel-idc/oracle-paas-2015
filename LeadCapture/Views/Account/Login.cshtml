@@ -1,0 +1,74 @@
+﻿@using IDC.LeadCapture.BLL
+@model IDC.LeadCapture.Models.Account.Login
+@{
+    ViewBag.Title = ResourceCache.Localize("DX LG | Sign In");
+    Layout = "~/Views/Shared/_LayoutAccount.cshtml";
+}
+
+<section class="slice bg-white">
+    <div class="wp-section">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-6 col-md-offset-3">
+                    <div class="wp-block default user-form">
+                        <div class="form-header">
+                            <h2>@ResourceCache.Localize("Login_Title")</h2>
+                        </div>
+                        <div class="form-body">
+                        @using (Html.BeginForm(null, null, new { ReturnUrl = ViewBag.ReturnUrl }, FormMethod.Post, new { @class = "sky-form"}))
+                        {
+                            @Html.AntiForgeryToken()
+                            @Html.ValidationSummary(false)
+                            <fieldset>
+                                <section>
+                                    <p><font color="red">*</font> @ResourceCache.Localize("required_field_msg")</p>
+
+                                    <div class="form-group">
+                                        <label class="label">@ResourceCache.Localize("Email") <font color="red">*</font></label>
+                                        <label class="input">
+                                            <i class="icon-append fa fa-user"></i>
+                                            @Html.TextBoxFor(m => m.UserName, new { @maxlength = "80" })
+                                        </label>
+                                    </div>
+                                </section>
+                                <section>
+                                    <div class="form-group">
+                                        <label class="label">@ResourceCache.Localize("Password") <font color="red">*</font></label>
+                                        <label class="input">
+                                            <i class="icon-append fa fa-lock"></i>
+                                            @Html.PasswordFor(m => m.Password, new { @maxlength = "80" })
+                                        </label>
+                                    </div>
+                                </section>
+                                <section>
+                                    <button class="btn btn-base btn-icon btn-icon-right btn-sign-in" type="submit" style="min-width:150px;padding-right:40px;">@ResourceCache.Localize("Sign In")</button>
+                                </section>
+                            </fieldset>
+                        }
+                        </div>
+                        <div class="form-footer">
+                            <p><a href="@Url.Action("ResetPassword", "Account")">@ResourceCache.Localize("forgot-password")</a></p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+@section scripts {
+    <script>
+
+        $(document).ready(function () {
+            jQuery('form').submit(function () {
+                $(this).find('button[type=submit]').attr('disabled', 'disabled');
+            });
+        });
+
+        $(function () {
+            $("#UserName").rules("add", {required: true, email: true, messages: {required: $("#Validation").attr('requiredMsg'), email:$("#Validation").attr('emailMsg')}});
+            $("#Password").rules("add", { required: true, messages: { required: $("#Validation").attr('passwordMsg') } });
+        });
+
+    </script>
+}

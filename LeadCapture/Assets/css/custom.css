@@ -1,0 +1,45 @@
+/* Add here all your css styles (customizations) */
+
+/*Navbar*/
+.header-v6 .navbar {
+	//border: solid 1px #E5E5E5;
+	margin-bottom: 0;
+}
+/*Copyright*/
+.footer-v2 .copyright {
+	border-top: solid 1px #E5E5E5;
+	background: #f9f9f9;
+	padding: 20px 0 15px;
+}
+
+/*Purchase Block*/
+.purchase-custom {
+	padding: 25px 0 30px;
+	border-top: solid 1px #eee;
+	border-bottom: solid 1px #eee;
+	background-color: #f9f9f9;
+	background: none;
+}
+
+#responsive {
+	top: 70px;
+
+	//outline: none;
+}
+
+/*Header Sticky*/
+	.header-fixed .header-v6.header-sticky {
+		border-bottom: solid 1px #f3f3f3;
+	}
+
+
+/* Chart.js Pie Chart Content */
+.panel-heading {
+	color:#000;
+}
+
+.panel {
+	border:none;
+	-webkit-box-shadow:none;
+	margin-bottom: 0px;
+}

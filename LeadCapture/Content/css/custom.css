@@ -1,0 +1,23 @@
+.dark1 #intro {
+	background-color: #0A4C86;
+  //background-image: url('../img/uat.jpg');
+}
+#intro .bgWrap.dimBg:before,
+#textcontent .bgWrap.dimBg:before,
+#grid .bgWrap.dimBg:before,
+#gallery .bgWrap.dimBg:before,
+#carousel .bgWrap.dimBg:before,
+#carousel-2 .bgWrap.dimBg:before,
+#contact .bgWrap.dimBg:before {
+  background: rgba(0, 0, 0, 0.0) !important;
+}
+
+#intro h1 {
+  font-size: 50px !important;
+}
+
+ @media (max-width: 480px) {
+  #logo {
+    width: 100%;
+  }
+}
